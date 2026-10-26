@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>キム・ギュホン・サウンドデザイン ポートフォリオ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 배치: 1200px 12단 격자, 왼쪽 정렬. 면 대신 선으로 나눈다.
+   색: 자기소개서 · 포트폴리오 PDF 와 같은 흰 바탕 + 남색(#1F4E8C) 하나. 일부러 밝은 한 가지 모습으로 고정 */
+:root {
+  --bg: #ffffff; --bg2: #f6f7f9; --line: #e3e7ee; --line2: #c9d2df;
+  --dim: #6b7482; --body: #2e3440; --hi: #13233d; --g: #1f4e8c; --g-line: rgba(31, 78, 140, .35);
+  --sans: "IBM Plex Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Consolas", monospace;
+  --wrap: 1200px; color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--bg); color: var(--body); font: 400 15px/1.75 var(--sans); -webkit-user-select: none; user-select: none; }
+.sel { -webkit-user-select: text; user-select: text; }
+/* 지운 글(빈 칸)은 공개 페이지에서 안 보이게 — 편집 모드에서는 "비어 있음" 칸으로 다시 보임 */
+[data-k]:empty { display: none; }
+/* 글 상자 안 줄바꿈(편집 화면 Shift+Enter · Shift+Space)을 그대로 보이게 */
+[data-k]:not(:has([data-k])) { white-space: pre-line; }
+img, video { max-width: 100%; display: block; -webkit-user-drag: none; }
+a { color: var(--hi); text-decoration: none; border-bottom: 1px solid var(--g-line); }
+a:hover, a:focus-visible { border-bottom-color: var(--g); }
+:focus-visible { outline: 2px solid var(--g); outline-offset: 2px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-inline: 24px; }
+h1, h2, h3 { color: var(--hi); font-weight: 700; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+/* 상단 */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 24px; min-height: 56px; flex-wrap: wrap; }
+.brand { color: var(--hi); font-weight: 700; border: 0; letter-spacing: .01em; }
+.brand span + span { color: var(--dim); font: 400 12px var(--mono); margin-left: 8px; }
+.nav { display: flex; gap: 20px; margin-left: auto; flex-wrap: wrap; }
+.nav a { border: 0; color: var(--dim); font-size: 14px; }
+.nav a:hover, .nav a:focus-visible { color: var(--hi); }
+
+/* 첫 화면 */
+.hero { padding-block: 72px 56px; border-bottom: 1px solid var(--line); }
+.label { font: 500 12px/1.4 var(--mono); color: var(--g); letter-spacing: .06em; }
+.hero h1 { font-size: clamp(40px, 7vw, 72px); line-height: 1.05; margin-top: 16px; letter-spacing: -.01em; color: var(--g); }
+.hero h1 small { display: block; font: 400 15px/1.6 var(--sans); color: var(--dim); margin-top: 12px; letter-spacing: 0; }
+.hero-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; margin-top: 40px; }
+.hero-intro { grid-column: 1 / span 7; max-width: 62ch; color: var(--body); font-size: 16px; }
+.hero-facts { grid-column: 9 / span 4; border-top: 1px solid var(--line2); }
+.hero-facts li { padding-block: 10px; border-bottom: 1px solid var(--line); font-size: 14px; }
+
+/* 구역 공통 */
+section { padding-block: 64px; border-bottom: 1px solid var(--line); }
+.sec-h { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; border-top: 2px solid var(--g); padding-top: 16px; margin-bottom: 32px; }
+.sec-h h2 { font-size: 28px; }
+.sec-h .note { color: var(--dim); font-size: 13px; }
+.kind { font: 500 12px/1.4 var(--mono); color: var(--g); letter-spacing: .04em; }
+.sub { color: var(--dim); font-size: 13px; }
+.lines li { position: relative; padding-left: 16px; margin-top: 6px; }
+.lines li::before { content: ""; position: absolute; left: 0; top: .85em; width: 8px; height: 1px; background: var(--dim); }
+
+/* 영상 */
+.vgrid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px 24px; }
+.vmain { grid-column: 1 / span 8; min-width: 0; }
+.vside { grid-column: 9 / span 4; min-width: 0; border-top: 1px solid var(--line2); }
+.player { position: relative; background: #000; aspect-ratio: 16 / 9; border: 1px solid var(--line); }
+.player video { width: 100%; height: 100%; object-fit: contain; background: #000; }
+/* 화면 가운데를 누르면 재생 · 정지. 아래 조작 막대(56px)는 비워 둬서 원래 조작이 그대로 됨 */
+.vhit { all: unset; position: absolute; left: 0; right: 0; top: 0; bottom: 56px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.bigplay { width: 76px; height: 76px; border-radius: 50%; background: rgba(19, 35, 61, .72); border: 1px solid rgba(255, 255, 255, .5); position: relative; opacity: 0; transition: opacity .15s; }
+.bigplay::after { content: ""; position: absolute; left: 30px; top: 22px; border-style: solid; border-width: 16px 0 16px 26px; border-color: transparent transparent transparent #fff; }
+.player.paused .bigplay, .vhit:focus-visible .bigplay { opacity: 1; }
+.player.paused .vhit:hover .bigplay { background: rgba(31, 78, 140, .9); }
+.player .wm { position: absolute; right: 12px; top: 10px; font: 400 11px var(--mono); color: rgba(255, 255, 255, .45); pointer-events: none; }
+.vstate { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; font: 400 12px var(--mono); color: var(--dim); }
+.vstate b { color: var(--g); font-weight: 500; }
+.vinfo { margin-top: 24px; }
+.vinfo h3 { font-size: 22px; margin-top: 6px; }
+.vmeta { display: grid; grid-template-columns: max-content 1fr; gap: 4px 20px; margin: 16px 0 0; font-size: 14px; }
+.vmeta dt { color: var(--dim); } .vmeta dd { margin: 0; color: var(--body); }
+.vblock { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line); }
+.vblock h4 { margin: 0 0 4px; font: 500 12px var(--mono); color: var(--dim); letter-spacing: .04em; }
+/* 바로 플레이 — 게임잼 결과물을 직접 해 볼 수 있게 크게. 남색 한 덩어리 + 선, 둥근 알약 모양은 쓰지 않음 */
+.ext.play { margin-top: 20px; }
+.play-btn { display: inline-grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; column-gap: 16px; padding: 16px 22px; background: var(--g); color: #fff; border: 0; min-width: min(100%, 420px); transition: background .15s; }
+.play-btn:hover, .play-btn:focus-visible { background: var(--hi); border: 0; }
+.play-ic { font-size: 18px; }
+.play-txt { display: grid; row-gap: 2px; }
+.play-txt > span:first-child { font-size: 18px; font-weight: 700; }
+.play-sub { font-size: 12px; color: rgba(255, 255, 255, .78); }
+.play-go { font-size: 18px; }
+.fig-play { display: block; position: relative; border: 0; }
+.fig-play-ic { position: absolute; left: 0; bottom: 0; padding: 8px 14px; background: var(--g); color: #fff; font: 700 13px var(--sans); }
+.fig-play:hover .fig-play-ic { background: var(--hi); }
+/* 학습노트 — Why? 이야기 · 갈래 작은 탭 · 왜? 질문(누르면 답) */
+.nwhy { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+.nwhy-mark { grid-column: 1 / span 3; font: 700 clamp(40px, 6vw, 64px)/1 var(--sans); color: var(--g); letter-spacing: -.01em; }
+.nwhy-text { grid-column: 4 / span 8; font-size: 17px; line-height: 1.8; color: var(--hi); }
+.nwhy-text p + p { margin-top: 10px; color: var(--body); font-size: 15px; }
+.ntabs { display: flex; gap: 28px; margin-top: 32px; border-bottom: 1px solid var(--line2); flex-wrap: wrap; }
+.ntab { all: unset; cursor: pointer; padding: 10px 0; margin-bottom: -1px; font-size: 15px; color: var(--dim); border-bottom: 2px solid transparent; }
+.ntab:hover { color: var(--hi); }
+.ntab.on { color: var(--hi); font-weight: 700; border-bottom-color: var(--g); }
+.npanel { padding-top: 8px; }
+.qa { border-bottom: 1px solid var(--line); }
+.qa summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; column-gap: 12px; align-items: baseline; padding: 16px 0; }
+.qa summary::-webkit-details-marker { display: none; }
+.qa summary::before { content: "Q"; font: 500 13px var(--mono); color: var(--g); }
+.qa-q { font-size: 16px; color: var(--hi); font-weight: 500; }
+.qa-ch { font: 400 12px var(--mono); color: var(--dim); white-space: nowrap; }
+.qa summary:hover .qa-q { color: var(--g); }
+.qa[open] summary .qa-q { color: var(--g); }
+.qa-a { margin: 0 0 18px 40px; max-width: 70ch; color: var(--body); }
+.qa-a::before { content: "A  "; font: 500 13px var(--mono); color: var(--dim); }
+.ntab .cnt { font: 400 12px var(--mono); color: var(--dim); margin-left: 4px; }
+.npanel .nshots { margin-top: 24px; }
+.npanel .nshots .gal { grid-column: 1 / span 9; }
+.nlist.ncols2 { columns: 2; column-gap: 32px; margin-top: 8px; }
+.nlist.ncols2 li { break-inside: avoid; }
+@media (max-width: 900px) { .nlist.ncols2 { columns: 1; } .npanel .nshots .gal { grid-column: 1 / -1; } }
+.nall { margin-top: 20px; }
+.nall > summary { cursor: pointer; font-size: 13px; color: var(--dim); padding: 8px 0; }
+.nall > summary .cnt { font: 400 12px var(--mono); margin-left: 6px; }
+.nall .nlist { columns: 2; column-gap: 32px; }
+.nall .nlist li { break-inside: avoid; }
+@media (max-width: 900px) { .nwhy-mark, .nwhy-text { grid-column: 1 / -1; } .nwhy-text { margin-top: 12px; } .nall .nlist { columns: 1; } .qa summary { grid-template-columns: 22px minmax(0, 1fr); } .qa-ch { grid-column: 2; } }
+/* 구간(하이라이트): 시작 – 끝 · 이름. 줄을 누르면 시작부터 재생 */
+.chap-row { display: grid; grid-template-columns: 18px 112px minmax(0, 1fr) auto; column-gap: 10px; align-items: baseline; padding-block: 6px; border-bottom: 1px solid var(--line); cursor: pointer; color: var(--body); }
+.chap-row:hover { color: var(--hi); }
+.chap-go { all: unset; cursor: pointer; font-size: 10px; color: var(--g); }
+.chap-time { font: 400 13px var(--mono); color: var(--g); white-space: nowrap; }
+.chap-time:has([data-k$=".2"]:empty) .chap-dash { display: none; }
+.chap-add, .chap-del { all: unset; cursor: pointer; font-size: 12px; color: var(--g); }
+.chap-del { color: #b42318; }
+.chap-add { margin-top: 10px; display: inline-block; border-bottom: 1px solid var(--g-line); }
+html:not(.ed-mode) .ed-only { display: none !important; }
+html:not(.ed-mode) .chap:not(:has(.chap-row)) { display: none; }
+.reelsw { display: flex; gap: 8px; align-items: center; margin: 6px 0 0; font: 400 12.5px var(--mono); color: var(--dim); }
+.reelsw button { all: unset; cursor: pointer; color: var(--dim); padding: 2px 0; border-bottom: 1px solid transparent; }
+.reelsw button:hover { color: var(--body); }
+.reelsw button[aria-pressed="true"] { color: var(--hi); border-bottom-color: var(--g); }
+#vlist li[hidden] { display: none; }
+.vrow { all: unset; box-sizing: border-box; cursor: pointer; display: grid; grid-template-columns: 128px minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 14px; padding-block: 12px; border-bottom: 1px solid var(--line); width: 100%; }
+.vrow img { grid-row: 1 / span 2; width: 128px; height: 72px; object-fit: cover; opacity: .75; }
+.vrow-t { color: var(--body); font-weight: 500; align-self: end; }
+.vrow-m { color: var(--dim); font: 400 12px var(--mono); }
+.vrow:hover img, .vrow.on img { opacity: 1; }
+.vrow.on .vrow-t { color: var(--hi); }
+.vrow.on { box-shadow: inset 2px 0 0 var(--g); padding-left: 10px; }
+
+/* 실무·대회 */
+.whead { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; margin-bottom: 24px; }
+.whead > div { grid-column: 1 / span 7; }
+.whead h3 { font-size: 22px; margin-top: 6px; }
+.whead p + p { margin-top: 8px; }
+.row { display: flex; gap: 32px; padding-block: 32px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+.row-fig { margin: 0; flex: 0 1 var(--w); min-width: 0; max-width: 100%; }
+.row-fig img { width: 100%; height: auto; }
+.row-fig figcaption { font-size: 11px; color: var(--dim); margin-top: 6px; }
+.row-txt { flex: 1 1 320px; min-width: 0; max-width: 62ch; }
+.row-txt h3 { font-size: 20px; margin-top: 6px; }
+.row-txt .lines { margin-top: 12px; }
+.ext { margin-top: 12px; font-size: 14px; }
+.extra-rows > .row:first-child { border-top: 0; padding-top: 0; }
+/* 참여 프로젝트 표 — 갈래 2 · 이름 4 · 내용 6 단. 머리줄 밑 남색 굵은 선, 갈래가 바뀌면 끝까지 선, 같은 갈래 안에선 이름 칸부터 선 */
+.pj-head { max-width: 62ch; margin-bottom: 32px; }
+.pj-head h3 { font-size: 22px; }
+.pj-head p { margin-top: 8px; }
+.pj-head p.sub { margin-top: 4px; }
+.pj-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 4fr) minmax(0, 6fr); column-gap: 24px; position: relative; }
+.pj-row > * { padding-block: 18px; }
+.pj-row:not(.pj-th) > :not(.pj-grp) { border-top: 1px solid var(--line2); }
+.pj-row.pj-g::before { content: ""; position: absolute; left: 0; right: 0; top: 0; border-top: 1px solid var(--line2); }
+.pj-th + .pj-row::before, .pj-th + .pj-row > * { border-top: 0 !important; }
+.pj-th > p { padding-block: 0 12px; font-size: 13px; font-weight: 700; color: var(--dim); }
+.pj-th { border-bottom: 2px solid var(--g); }
+.pj-grp { font-size: 13px; font-weight: 700; color: var(--dim); }
+.pj-name h4 { margin: 0; font-size: 17px; color: var(--hi); font-weight: 700; }
+.pj-name .sub { margin-top: 2px; }
+.pj-desc li { color: var(--body); }
+.pj-desc li + li { margin-top: 2px; }
+@media (max-width: 720px) {
+  .pj-th { display: none; }
+  .pj-row { grid-template-columns: minmax(0, 1fr); }
+  .pj-row > * { padding-block: 0; }
+  .pj-row:not(.pj-th) > :not(.pj-grp) { border-top: 0; }
+  .pj-row { padding-block: 16px; border-top: 1px solid var(--line); }
+  .pj-row.pj-g::before { display: none; }
+  .pj-row.pj-g { border-top: 2px solid var(--g); margin-top: 8px; }
+  .pj-grp:empty { display: none; }
+  .pj-grp { margin-bottom: 6px; }
+  .pj-desc { margin-top: 8px; }
+}
+.subsec { margin-top: 48px; }
+.subsec > h3 { font-size: 18px; padding-top: 12px; border-top: 1px solid var(--line2); }
+
+/* 프로그램 */
+.prog { padding-block: 40px; border-top: 1px solid var(--line); }
+.prog:first-of-type { border-top: 0; padding-top: 0; }
+.prog-h h3 { font-size: 24px; }
+.prog-body { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; margin-top: 16px; }
+.prog-txt { grid-column: 1 / span 4; min-width: 0; }
+.prog-txt .why { color: var(--body); }
+.prog-txt .facts { margin-top: 14px; font: 400 13px/1.7 var(--mono); color: var(--g); }
+.gal { grid-column: 5 / span 8; min-width: 0; }
+.gal-main { margin: 0; position: relative; }
+.gal-main img { width: 100%; height: auto; border: 1px solid var(--line); }
+.gal-main figcaption { font-size: 12px; color: var(--dim); margin-top: 8px; }
+.gal-thumbs { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.gal-thumbs button { all: unset; cursor: pointer; width: 112px; border: 1px solid var(--line); opacity: .55; }
+.gal-thumbs button.on, .gal-thumbs button:hover { opacity: 1; border-color: var(--g); }
+.gal-thumbs img { width: 100%; height: 64px; object-fit: cover; }
+/* 옆으로 넘겨 보기 */
+.sl { min-width: 0; }
+.sl-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; outline: 0; cursor: grab; }
+.sl-track::-webkit-scrollbar { display: none; }
+.sl-track.drag { scroll-snap-type: none; cursor: grabbing; user-select: none; }
+.sl-track:focus-visible { box-shadow: 0 0 0 1px var(--g); }
+.sl-item { flex: 0 0 100%; margin: 0; scroll-snap-align: start; min-width: 0; }
+.sl-item img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: var(--bg2); border: 1px solid var(--line); }
+.sl-item figcaption { font-size: 13px; color: var(--dim); margin-top: 10px; padding-right: 8px; }
+.sl-item figcaption b { color: var(--hi); font-weight: 600; margin-right: 10px; }
+.sl-bar { display: flex; align-items: center; gap: 14px; margin-top: 14px; }
+.sl-bar button { all: unset; box-sizing: border-box; cursor: pointer; width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--line2); color: var(--hi); font-size: 16px; }
+.sl-bar button:hover, .sl-bar button:focus-visible { border-color: var(--g); color: var(--g); }
+.sl-bar button[disabled] { opacity: .3; cursor: default; border-color: var(--line); color: var(--dim); }
+.sl-n { font: 400 13px var(--mono); color: var(--dim); min-width: 56px; }
+.sl-n b { color: var(--g); font-weight: 500; }
+.sl-line { flex: 1; height: 1px; background: var(--line2); position: relative; }
+.sl-line i { position: absolute; left: 0; top: -1px; height: 3px; background: var(--g); transition: left .25s, width .25s; }
+.row-sl { flex-basis: var(--w); }
+.pgm-sl { max-width: 1040px; }
+.pgm-txt { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line2); }
+.pgm-col { grid-column: span 6; min-width: 0; }
+.pgm-col h3 { font-size: 15px; color: var(--dim); font-weight: 500; margin-bottom: 8px; }
+.pgm-list li { display: grid; grid-template-columns: 36px minmax(0, 1fr); column-gap: 8px; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.pgm-list li[data-to] { cursor: pointer; }
+.pgm-no { grid-row: 1 / span 2; font: 400 13px var(--mono); color: var(--dim); padding-top: 3px; }
+.pgm-name { color: var(--hi); font-weight: 600; font-size: 16px; }
+.pgm-one { color: var(--dim); font-size: 14px; }
+.pgm-list li.on .pgm-no, .pgm-list li.on .pgm-name { color: var(--g); }
+.pgm-list li[data-to]:hover .pgm-name { color: var(--g); }
+.pgm-p { color: var(--body); }
+.pgm-p + .pgm-p { margin-top: 14px; }
+@media (max-width: 900px) { .pgm-col { grid-column: 1 / -1; } }
+.slot { width: 100%; border: 1px dashed var(--line2); display: flex; align-items: center; justify-content: flex-start; padding: 16px; background: var(--bg2); }
+.slot span { font: 400 12px/1.6 var(--mono); color: var(--dim); }
+.gal.slots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+
+/* 학습노트 */
+.ncols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; }
+.ncol h3 { font-size: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line2); }
+.ncol .cnt { color: var(--dim); font: 400 12px var(--mono); margin-left: 6px; }
+.nlist li { display: grid; grid-template-columns: 36px minmax(0, 1fr); column-gap: 8px; padding-block: 10px; border-bottom: 1px solid var(--line); }
+.nlist .no { grid-row: 1 / span 2; font: 400 13px var(--mono); color: var(--g); }
+.nlist .nt { color: var(--hi); font-size: 14px; }
+.nlist .ns { color: var(--dim); font-size: 13px; }
+.nshots { margin-top: 40px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.nshots .gal { grid-column: 1 / span 9; }
+
+/* 연락 */
+.contact { display: grid; grid-template-columns: max-content 1fr; gap: 10px 24px; font-size: 15px; }
+.contact dt { color: var(--dim); } .contact dd { margin: 0; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.copy { all: unset; cursor: pointer; font: 400 12px var(--mono); color: var(--g); border-bottom: 1px solid var(--g-line); }
+footer { padding-block: 32px 48px; font-size: 12px; color: var(--dim); }
+
+/* 영상 기획서 화면 — 포트폴리오 본문 대신 보인다(#plan-<id>). 글은 8단 폭, 장 제목마다 굵은 선 */
+.plan { padding-block: 40px 72px; }
+.plan .back { font-size: 14px; }
+.plan .back.end { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--line); }
+.plan-h { margin-top: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--line); max-width: 62rem; }
+.plan-h h1 { font-size: clamp(28px, 4vw, 40px); line-height: 1.2; margin-top: 8px; color: var(--g); }
+.plan-h .sub { font-size: 15px; margin-top: 10px; }
+.plan-play { margin-top: 20px; }
+.plan-body { max-width: 760px; }
+.plan-body h2 { font-size: 22px; margin-top: 56px; padding-top: 14px; border-top: 2px solid var(--g); }
+.plan-body h3 { font-size: 16px; margin-top: 28px; }
+.plan-body .pb-h2 + .pb-h3 h3 { margin-top: 20px; }
+.plan-body .pp { margin-top: 12px; }
+.plan-body .lines { margin-top: 10px; }
+.plan-body blockquote { margin: 20px 0 0; padding: 4px 0 4px 16px; border-left: 2px solid var(--g); color: var(--hi); }
+.pdl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 24px; margin: 12px 0 0; padding-block: 12px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 14px; }
+.pdl dt { color: var(--dim); } .pdl dd { margin: 0; color: var(--body); }
+.pfig { margin: 24px 0 0; max-width: min(100%, var(--w)); }
+.pfig img { width: 100%; height: auto; border: 1px solid var(--line); }
+.pfig figcaption { font-size: 12px; color: var(--dim); margin-top: 8px; }
+.cues { margin-top: 12px; border-top: 1px solid var(--line2); }
+.cues li { display: grid; grid-template-columns: 140px minmax(0, 1fr); column-gap: 20px; padding-block: 10px; border-bottom: 1px solid var(--line); font-size: 14px; }
+.cue { all: unset; cursor: pointer; font: 500 13px/1.7 var(--mono); color: var(--g); border-bottom: 1px solid transparent; align-self: start; justify-self: start; }
+.cue:hover, .cue:focus-visible { border-bottom-color: var(--g); }
+.plan-play .cue { font: 500 14px var(--sans); }
+
+/* 더한 사진 — 구역 맨 위 0 높이 칸에 겹쳐 두고 옮기기로 자리를 정함 */
+.wrap { position: relative; }
+.free-photos { position: relative; height: 0; z-index: 2; }
+.free-ph { position: absolute; left: 0; top: 0; margin: 0; width: var(--w); max-width: 100%; }
+.free-ph img { width: 100%; height: auto; display: block; }
+.free-ph figcaption { font-size: 12px; color: var(--dim); margin-top: 6px; background: var(--bg); }
+@media (max-width: 900px) {
+  .free-photos { height: auto; display: grid; gap: 16px; margin-bottom: 24px; }
+  .free-ph { position: static; }
+}
+@media (max-width: 900px) {
+  .hero-intro, .hero-facts, .vmain, .vside, .prog-txt, .gal, .nshots .gal, .whead > div { grid-column: 1 / -1; }
+  .ncols { grid-template-columns: minmax(0, 1fr); }
+  section { padding-block: 48px; }
+}
+/* 옮긴 자리 (편집 모드 "옮기기"로 정함) */
+</style><style id="dz-baked">
+
+@media (min-width: 901px) {
+[data-m="ph:p1"] { transform: translate(852px, 12px); width: 186px; max-width: none; flex-basis: 186px; --w: 186px; } [data-m="ph:p1"]:is(span, a, b) { display: inline-block; }
+[data-m="box:notesWhy"] { transform: translate(0px, -2px); } [data-m="box:notesWhy"]:is(span, a, b) { display: inline-block; }
+[data-m="vlist"] { transform: translate(-8px, 0px); } [data-m="vlist"]:is(span, a, b) { display: inline-block; }
+[data-k="profile.intro"] { transform: translate(0px, 14px); width: 595px; max-width: none; flex-basis: 595px; --w: 595px; } [data-k="profile.intro"]:is(span, a, b) { display: inline-block; }
+}
+</style><style>
+/* 뺀 것 (편집 모드 [✕ 빼기]) */
+html:not(.ed-mode) :is([data-k="profile.facts"], [data-k="labels.notesHead"], [data-k="notes.note"], [data-m="box:notesWhy"], [data-k="labels.notes"], [data-k="labels.notesWhy"], [data-k="notes.why.0"], [data-k="labels.noteShotsTab"], [data-k="labels.programs"], [data-k="labels.programsNote"], [data-m="box:programsList"], [data-m="box:programsText"], [data-m="gal:programs"], [data-m="gal:n"]) { display: none !important; }
+/* 안이 다 빈 구역 · 줄은 선까지 숨김 (2026-10-25) */
+.pf-void { display: none !important; }
+@media (max-width: 520px) {
+  .wrap { padding-inline: 16px; }
+  .vrow { grid-template-columns: 96px minmax(0, 1fr); } .vrow img { width: 96px; height: 54px; }
+  .cues li { grid-template-columns: minmax(0, 1fr); row-gap: 2px; }
+  .nav { gap: 14px; margin-left: 0; }
+}
+</style>
+
+<header class="top"><div class="wrap">
+  <a class="brand" href="#top"><span data-k="profile.name">キム・ギュホン</span><span data-k="profile.nameEn">ポートフォリオ</span></a>
+  <nav class="nav" aria-label="セクション"><a href="#projects"><span data-k="labels.nav_projects">Projects</span></a><a href="#videos"><span data-k="labels.nav_videos">Reel</span></a><a href="#work"><span data-k="labels.nav_extra">Awards</span></a><a href="#programs"><span data-k="labels.nav_programs">Tools</span></a><a href="#notes"><span data-k="labels.nav_notes">Notes</span></a><a href="#contact"><span data-k="labels.nav_contact">Contact</span></a></nav>
+</div></header>
+
+<main id="top">
+  <div class="hero"><div class="wrap">
+    <div class="free-photos" data-sec="hero">
+      <figure class="free-ph" data-slot="사진넣기/추가_p1" data-m="ph:p1" style="--w:170px">
+        <img src="img/사진넣기_추가_p1.jpg" alt="" loading="lazy" draggable="false">
+        <figcaption data-k="photos.0.caption"></figcaption>
+      </figure></div>
+    <p class="label" data-k="profile.role">SFXサウンドデザイナー・ボイスディレクター／エディター</p>
+    <h1><span data-k="profile.name">キム・ギュホン</span><small data-k="profile.tagline">楽しいサウンドを作るデザイナー</small></h1>
+    <div class="hero-grid">
+      <p class="hero-intro" data-k="profile.intro">サウンドデザイナー キム・ギュホン（Gyu Hun Kim）のポートフォリオ</p>
+      <ul class="hero-facts" data-k="profile.facts"></ul>
+    </div>
+  </div></div>
+
+  <section id="projects"><div class="wrap">
+    <div class="sec-h"><h2><span data-k="labels.projects">プロジェクト</span></h2><p class="note" data-k="work.period"></p></div>
+    <div class="free-photos" data-sec="projects"></div>
+    <div class="pj-head" data-m="box:pjhead">
+      <h3 data-k="projects.title">実務・チームプロジェクト</h3>
+      <p data-k="work.summary"></p><p class="sub" data-k="work.note">契約上、プロジェクト名と担当内容はお伝えできますが、納品した音声はお見せできません。</p>
+    </div>
+    <div class="pj">
+      <div class="pj-row pj-th"><p></p><p><span data-k="labels.pjColName">プロジェクト</span></p><p><span data-k="labels.pjColDesc">担当内容</span></p></div>
+      <div class="pj-row pj-g">
+        <p class="pj-grp" data-k="projects.rows.0.group">SFX</p>
+        <div class="pj-name" data-m="box:pj.0"><h4 data-k="projects.rows.0.title">メイプルストーリー</h4><p class="sub" data-k="projects.rows.0.client">Nexon・7月アップデート</p></div>
+        <ul class="pj-desc" data-k="projects.rows.0.lines"><li data-k="projects.rows.0.lines.0">戦士・海賊・盗賊のスキル効果音 約110種</li></ul>
+      </div>
+      <div class="pj-row">
+        <p class="pj-grp"></p>
+        <div class="pj-name" data-m="box:pj.1"><h4 data-k="projects.rows.1.title">Pizza Oof!</h4><p class="sub" data-k="projects.rows.1.client">Newmatic・Steam アーリーアクセス 2026.07.09</p></div>
+        <ul class="pj-desc" data-k="projects.rows.1.lines"><li data-k="projects.rows.1.lines.0">環境音・効果音をデザインし、Unreal Engineへの実装も自分で担当</li></ul>
+      </div>
+      <div class="pj-row pj-g">
+        <p class="pj-grp" data-k="projects.rows.2.group">Trailer</p>
+        <div class="pj-name" data-m="box:pj.2"><h4 data-k="projects.rows.2.title">Warframe</h4><p class="sub" data-k="projects.rows.2.client">Digital Extremes</p></div>
+        <ul class="pj-desc" data-k="projects.rows.2.lines"><li data-k="projects.rows.2.lines.0">公式ゲームプレイトレーラーのボイス収録ディレクション（Studio Monkey）</li></ul>
+      </div>
+      <div class="pj-row pj-g">
+        <p class="pj-grp" data-k="projects.rows.3.group">Voice</p>
+        <div class="pj-name" data-m="box:pj.3"><h4 data-k="projects.rows.3.title">Samsung Bixby × 鳴潮</h4><p class="sub" data-k="projects.rows.3.client">Samsung Electronics</p></div>
+        <ul class="pj-desc" data-k="projects.rows.3.lines"><li data-k="projects.rows.3.lines.0">キャラクターボイス 9,000文：収録ディレクション・RX・QCを一人で担当</li><li data-k="projects.rows.3.lines.1">1日100文から、4〜5時間で600〜700文まで処理量を伸ばし、必ず2回目のQCを実施</li></ul>
+      </div>
+      <div class="pj-row">
+        <p class="pj-grp"></p>
+        <div class="pj-name" data-m="box:pj.4"><h4 data-k="projects.rows.4.title">Overgeared・ブルーアーカイブ</h4><p class="sub" data-k="projects.rows.4.client">Grey Games · Nexon Games</p></div>
+        <ul class="pj-desc" data-k="projects.rows.4.lines"><li data-k="projects.rows.4.lines.0">ボイス 約6,000文のRX・整音・QC、同じ数週間で両方を納品</li></ul>
+      </div>
+      <div class="pj-row pj-g">
+        <p class="pj-grp" data-k="projects.rows.5.group">Global</p>
+        <div class="pj-name" data-m="box:pj.5"><h4 data-k="projects.rows.5.title">CHINAJOY 2026</h4><p class="sub" data-k="projects.rows.5.client">Studio Monkey ブース</p></div>
+        <ul class="pj-desc" data-k="projects.rows.5.lines"><li data-k="projects.rows.5.lines.0">3日間、海外の来場者に英語でボイス・サウンド作品を紹介</li><li data-k="projects.rows.5.lines.1">代表の通訳とブース運営を担当</li></ul>
+      </div>
+      <div class="pj-row">
+        <p class="pj-grp"></p>
+        <div class="pj-name" data-m="box:pj.6"><h4 data-k="projects.rows.6.title">投資家ミーティング（DOD）</h4><p class="sub" data-k="projects.rows.6.client">2026.10・ソウル</p></div>
+        <ul class="pj-desc" data-k="projects.rows.6.lines"><li data-k="projects.rows.6.lines.0">DODの米国側投資家と銀行支店長の間で、英語・韓国語の通訳を担当</li></ul>
+      </div>
+    </div>
+  </div></section>
+
+  <section id="videos"><div class="wrap">
+    <div class="sec-h"><h2><span data-k="labels.videos">トレーラー＆シネマティック リール</span></h2><p class="note"><span data-k="labels.videosCount">映像6本・約10分・</span> <span data-k="labels.videosNote">ヘッドホンまたはイヤホンでお聴きください。</span></p></div>
+    <div class="free-photos" data-sec="videos"></div>
+    <div class="vgrid">
+      <div class="vmain">
+        <div class="player paused" data-m="player"><video id="player" controls playsinline preload="metadata" controlslist="nodownload noremoteplayback" disablepictureinpicture disableremoteplayback></video><button type="button" class="vhit" id="vhit" aria-label="Play / Pause"><span class="bigplay" aria-hidden="true"></span></button><span class="wm" data-k="labels.playerMark">© Gyu Hun Kim</span></div>
+        <p class="vstate" id="vstate"></p>
+        <div class="vinfo" id="vinfo" data-m="vinfo"></div>
+      </div>
+      <ol class="vside" id="vlist" data-m="vlist">
+      <li data-id="qJQO0FiphRs" data-region="both"><button type="button" class="vrow" data-i="0" aria-label="The Last of Us Part IIを再生">
+        <img src="img/사진넣기_영상_qJQO0FiphRs.jpg" alt="" width="128" height="72" loading="lazy" draggable="false" data-slot="사진넣기/영상_qJQO0FiphRs">
+        <span class="vrow-t">The Last of Us Part II</span>
+        <span class="vrow-m">Trailer (gameplay edit) · Sound Redesign · 2:26</span>
+      </button></li>
+      <li data-id="j7EaNF1skhE" data-region="both"><button type="button" class="vrow" data-i="1" aria-label="The First Berserker: Khazan インゲーム映像を再生">
+        <img src="img/사진넣기_영상_j7EaNF1skhE.jpg" alt="" width="128" height="72" loading="lazy" draggable="false" data-slot="사진넣기/영상_j7EaNF1skhE">
+        <span class="vrow-t">The First Berserker: Khazan インゲーム映像</span>
+        <span class="vrow-m"> · 1:14</span>
+      </button></li>
+      <li data-id="rc-eExao-ls" data-region="both"><button type="button" class="vrow" data-i="2" aria-label="LORDNINEを再生">
+        <img src="img/사진넣기_영상_rc-eExao-ls.jpg" alt="" width="128" height="72" loading="lazy" draggable="false" data-slot="사진넣기/영상_rc-eExao-ls">
+        <span class="vrow-t">LORDNINE</span>
+        <span class="vrow-m">Trailer · Sound Redesign · 1:17</span>
+      </button></li>
+      <li data-id="NO-JkYMjjtY" data-region="both"><button type="button" class="vrow" data-i="3" aria-label="Back 4 Blood インゲーム映像を再生">
+        <img src="img/사진넣기_영상_NO-JkYMjjtY.jpg" alt="" width="128" height="72" loading="lazy" draggable="false" data-slot="사진넣기/영상_NO-JkYMjjtY">
+        <span class="vrow-t">Back 4 Blood インゲーム映像</span>
+        <span class="vrow-m"> · 0:56</span>
+      </button></li>
+      <li data-id="wBZLKIVBC8w" data-region="both"><button type="button" class="vrow" data-i="4" aria-label="Back 4 Bloodを再生">
+        <img src="img/사진넣기_영상_wBZLKIVBC8w.jpg" alt="" width="128" height="72" loading="lazy" draggable="false" data-slot="사진넣기/영상_wBZLKIVBC8w">
+        <span class="vrow-t">Back 4 Blood</span>
+        <span class="vrow-m">Trailer · Sound Redesign · 1:47</span>
+      </button></li>
+      <li data-id="4crZ2vKl_8o" data-region="both"><button type="button" class="vrow" data-i="5" aria-label="Dungeon &amp; Fighter: Overkillを再生">
+        <img src="img/사진넣기_영상_4crZ2vKl_8o.jpg" alt="" width="128" height="72" loading="lazy" draggable="false" data-slot="사진넣기/영상_4crZ2vKl_8o">
+        <span class="vrow-t">Dungeon &amp; Fighter: Overkill</span>
+        <span class="vrow-m">Trailer · Sound Redesign · 1:08</span>
+      </button></li>
+      <li data-id="06eVmlKTqvA" data-region="both"><button type="button" class="vrow" data-i="6" aria-label="Dungeons &amp; Dragonsを再生">
+        <img src="img/사진넣기_영상_06eVmlKTqvA.jpg" alt="" width="128" height="72" loading="lazy" draggable="false" data-slot="사진넣기/영상_06eVmlKTqvA">
+        <span class="vrow-t">Dungeons &amp; Dragons</span>
+        <span class="vrow-m">Cinematic trailer · Sound Redesign · 1:45</span>
+      </button></li>
+      </ol>
+    </div>
+  </div></section>
+
+  <section id="work"><div class="wrap">
+    <div class="sec-h"><h2><span data-k="labels.extra">受賞・ゲームジャム</span></h2></div>
+    <div class="free-photos" data-sec="work"></div>
+    <div class="extra-rows">
+    <article class="row">
+      <figure class="row-fig" data-slot="사진넣기/대회_01_GXG2026" data-m="fig:사진넣기/대회_01_GXG2026" style="--w:360px">
+        <img src="img/사진넣기_대회_01_GXG2026.jpg" alt="GXG2026 Gamesound AI 大会・金賞" loading="lazy" draggable="false">
+        <figcaption data-k="extra.0.imageCredit"></figcaption>
+      </figure>
+      <div class="row-txt" data-m="box:extra.0">
+        <h3 data-k="extra.0.title">GXG2026 Gamesound AI 大会・金賞</h3>
+        <p class="sub" data-k="extra.0.sub">創造工作所 主催・2026.09</p>
+        <ul class="lines" data-k="extra.0.lines"><li data-k="extra.0.lines.0">Overtakeチームを自ら結成し、SFX・BGM・VOICEに役割を分けました。私はSFXとVOICEを担当し、2週間にわたってスケジュールと方向性を調整しました。本選を経て、決勝で優勝しました。</li></ul>
+        
+      </div>
+    </article>
+    <article class="row">
+      <div class="row-fig row-sl" data-m="fig:사진넣기/대회_02_GMTK2026" style="--w:360px"><div class="sl" data-sl="extra1" data-slots="[&quot;사진넣기/대회_02_GMTK2026_플레이1&quot;,&quot;사진넣기/대회_02_GMTK2026_플레이2&quot;,&quot;사진넣기/대회_02_GMTK2026_플레이3&quot;]">
+        <div class="sl-track" tabindex="0" aria-label="写真をめくる・左右の矢印キー">
+          <figure class="sl-item" data-slot="사진넣기/대회_02_GMTK2026_플레이1"><img src="img/사진넣기_대회_02_GMTK2026_플레이1.jpg" alt="GMTK Game Jam 2026 · Flamageddon" loading="eager" draggable="false"></figure>
+          <figure class="sl-item" data-slot="사진넣기/대회_02_GMTK2026_플레이2"><img src="img/사진넣기_대회_02_GMTK2026_플레이2.jpg" alt="GMTK Game Jam 2026 · Flamageddon" loading="lazy" draggable="false"></figure>
+          <figure class="sl-item" data-slot="사진넣기/대회_02_GMTK2026_플레이3"><img src="img/사진넣기_대회_02_GMTK2026_플레이3.jpg" alt="GMTK Game Jam 2026 · Flamageddon" loading="lazy" draggable="false"></figure>
+        </div>
+        <div class="sl-bar"><button type="button" class="sl-prev" aria-label="前の写真">←</button><span class="sl-n"><b>1</b> / 3</span><span class="sl-line"><i style="width:33.333333333333336%"></i></span><button type="button" class="sl-next" aria-label="次の写真">→</button></div>
+      </div></div>
+      <div class="row-txt" data-m="box:extra.1">
+        <h3 data-k="extra.1.title">GMTK Game Jam 2026 · Flamageddon</h3>
+        <p class="sub" data-k="extra.1.sub">5人チーム（企画1・開発2・サウンド1・アート1）・Unity・5日間</p>
+        <ul class="lines" data-k="extra.1.lines"><li data-k="extra.1.lines.0">チームと5日間でゲームを作り、効果音とBGMを担当しました。企画会議では車のレースというコンセプトを提案し、それがゲームの核になりました。全作品中、上位8.9%に入りました。</li></ul>
+        <p class="ext play" data-m="link:extra.1"><a class="play-btn" href="https://alegruz.itch.io/flamageddon" target="_blank" rel="noopener"><span class="play-ic" aria-hidden="true">▶</span><span class="play-txt"><span data-k="extra.1.link.0">Play it on itch.io</span><span class="play-sub" data-k="labels.playSub">インストール不要でブラウザで動きます・新しいタブで開きます</span></span><span class="play-go" aria-hidden="true">↗</span></a></p>
+      </div>
+    </article></div>
+  </div></section>
+
+  <section id="programs"><div class="wrap">
+    <div class="sec-h"><h2><span data-k="labels.programs">自作ツール</span></h2><p class="note"><span data-k="labels.programsNote">仕事の中で不便だったことを解決するために、自分でツールを作りました。画面のみ掲載しています。</span></p></div>
+    <div class="free-photos" data-sec="programs"></div>
+    
+    <div class="pgm">
+      <div class="pgm-sl" data-m="gal:programs"><div class="sl" data-sl="programs" data-slots="[&quot;사진넣기/프로그램_SoundDeck_1&quot;,&quot;사진넣기/프로그램_SoundDeck_2&quot;,&quot;사진넣기/프로그램_SoundDeck_3&quot;,&quot;사진넣기/프로그램_작업대_1&quot;,&quot;사진넣기/프로그램_작업대_2&quot;,&quot;사진넣기/프로그램_StepForge_1&quot;,&quot;사진넣기/프로그램_StepForge_2&quot;,&quot;사진넣기/프로그램_크리처_1&quot;,&quot;사진넣기/프로그램_크리처_2&quot;,&quot;사진넣기/프로그램_TubeVault_1&quot;,&quot;사진넣기/프로그램_TubeVault_2&quot;]">
+        <div class="sl-track" tabindex="0" aria-label="写真をめくる・左右の矢印キー">
+          <figure class="sl-item" data-slot="사진넣기/프로그램_SoundDeck_1" data-g="0"><img src="img/사진넣기_프로그램_SoundDeck_1.jpg" alt="SoundDeck" loading="eager" draggable="false"><figcaption><b>SoundDeck</b><span data-k="programs.0.shots.0.caption">ライブラリ検索・「footstep gravel」を類義語ごとライブラリ全体から探し、すぐに波形を再生</span></figcaption></figure>
+          <figure class="sl-item" data-slot="사진넣기/프로그램_SoundDeck_2" data-g="0"><img src="img/사진넣기_프로그램_SoundDeck_2.jpg" alt="SoundDeck" loading="lazy" draggable="false"><figcaption><b>SoundDeck</b><span data-k="programs.0.shots.1.caption">SoundDeck内の足音ビルダー・体型、歩き方、速さ、歩幅、重さから足音を組み立てる</span></figcaption></figure>
+          <figure class="sl-item" data-slot="사진넣기/프로그램_작업대_1" data-g="1"><img src="img/사진넣기_프로그램_작업대_1.jpg" alt="名前変更・整理ワークベンチ" loading="lazy" draggable="false"><figcaption><b>名前変更・整理ワークベンチ</b><span data-k="programs.1.shots.0.caption">名前変更ワークベンチ・聴きながらルールで名前を直し、新しい名前を先に見せる</span></figcaption></figure>
+          <figure class="sl-item" data-slot="사진넣기/프로그램_작업대_2" data-g="1"><img src="img/사진넣기_프로그램_작업대_2.jpg" alt="名前変更・整理ワークベンチ" loading="lazy" draggable="false"><figcaption><b>名前変更・整理ワークベンチ</b><span data-k="programs.1.shots.1.caption">フォルダ整理ワークベンチ・共通する単語からフォルダ案を作り、ファイルの行き先を先に見せる</span></figcaption></figure>
+          <figure class="sl-item" data-slot="사진넣기/프로그램_StepForge_1" data-g="2"><img src="img/사진넣기_프로그램_StepForge_1.jpg" alt="StepForge" loading="lazy" draggable="false"><figcaption><b>StepForge</b><span data-k="programs.2.shots.0.caption">サンプル・足が着く音を1つ読み込み、接地点を揃える</span></figcaption></figure>
+          <figure class="sl-item" data-slot="사진넣기/프로그램_StepForge_2" data-g="2"><img src="img/사진넣기_프로그램_StepForge_2.jpg" alt="StepForge" loading="lazy" draggable="false"><figcaption><b>StepForge</b><span data-k="programs.2.shots.1.caption">プレビュー・左右の接地が波形に表示され、そのままWAVに書き出し</span></figcaption></figure>
+          <figure class="sl-item" data-slot="사진넣기/프로그램_크리처_1" data-g="3"><img src="img/사진넣기_프로그램_크리처_1.jpg" alt="クリーチャーサウンドビルダー" loading="lazy" draggable="false"><figcaption><b>クリーチャーサウンドビルダー</b><span data-k="programs.3.shots.0.caption">レイヤー・息、うなり、咆哮を重ね、待機・攻撃・被弾のセットを作る</span></figcaption></figure>
+          <figure class="sl-item" data-slot="사진넣기/프로그램_TubeVault_1" data-g="4"><img src="img/사진넣기_프로그램_TubeVault_1.jpg" alt="TubeVault" loading="lazy" draggable="false"><figcaption><b>TubeVault</b><span data-k="programs.4.shots.0.caption">プレーヤー・韓国語と英語の字幕を同時に表示し、字幕パネルが再生に合わせて動く</span></figcaption></figure>
+          <figure class="sl-item" data-slot="사진넣기/프로그램_TubeVault_2" data-g="4"><img src="img/사진넣기_프로그램_TubeVault_2.jpg" alt="TubeVault" loading="lazy" draggable="false"><figcaption><b>TubeVault</b><span data-k="programs.4.shots.1.caption">海外サウンドデザイナーの講義50本をディスクに保存した一覧</span></figcaption></figure>
+        </div>
+        <div class="sl-bar"><button type="button" class="sl-prev" aria-label="前の写真">←</button><span class="sl-n"><b>1</b> / 9</span><span class="sl-line"><i style="width:11.11111111111111%"></i></span><button type="button" class="sl-next" aria-label="次の写真">→</button></div>
+      </div></div>
+      <div class="pgm-txt">
+        <div class="pgm-col" data-m="box:programsList">
+          <h3 data-k="labels.pgmList">作ったもの</h3>
+          <ol class="pgm-list">
+            <li data-g="0" data-to="0"><span class="pgm-no">01</span><span class="pgm-name" data-k="programs.0.name">SoundDeck</span><span class="pgm-one" data-k="programs.0.one">Soundlyの代わりに作った、自作のサウンドライブラリアプリ</span></li>
+            <li data-g="1" data-to="2"><span class="pgm-no">02</span><span class="pgm-name" data-k="programs.1.name">名前変更・整理ワークベンチ</span><span class="pgm-one" data-k="programs.1.one">大量のサウンドファイルを聴きながら整理する（SoundDeck内）</span></li>
+            <li data-g="2" data-to="4"><span class="pgm-no">03</span><span class="pgm-name" data-k="programs.2.name">StepForge</span><span class="pgm-one" data-k="programs.2.one">数個の足音サンプルから、歩き方に合わせて人・獣・モンスターの足音を作る</span></li>
+            <li data-g="3" data-to="6"><span class="pgm-no">04</span><span class="pgm-name" data-k="programs.3.name">クリーチャーサウンドビルダー</span><span class="pgm-one" data-k="programs.3.one">素材を重ねてクリーチャーの音を作る（SoundDeck内）</span></li>
+            <li data-g="4" data-to="7"><span class="pgm-no">05</span><span class="pgm-name" data-k="programs.4.name">TubeVault</span><span class="pgm-one" data-k="programs.4.one">YouTube動画を字幕・概要・要約と一緒に保存する勉強用アプリ</span></li>
+          </ol>
+        </div>
+        <div class="pgm-col" data-m="box:programsText">
+          <h3 data-k="labels.pgmHow">AIと一緒に作りながら身についたこと</h3>
+          <p class="pgm-p" data-k="programsText.0">5つとも、実際に仕事が行き詰まったところから始まりました。私は開発者ではないので、何が不便でどう動くべきかを自分で決め、コードはAI（Claude）と一緒に書いています。使っていて直すところが見つかれば、すぐに直します。</p><p class="pgm-p" data-k="programsText.1">作っていくうちに、これまで感覚でやっていたこと、たとえば足音がどこに着くか、クリーチャーのレイヤーをどう重ねるか、ライブラリにどう名前を付けるかを言葉にできるようになりました。そのおかげで、仕事を段階に分けること、大量のファイルをミスなく管理すること、新しいツールを早く覚えることが上手になりました。</p>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+  <section id="notes"><div class="wrap">
+    <div class="sec-h"><h2><span data-k="labels.notes">勉強ノート</span></h2><p class="note"><span data-k="labels.notesHead">ゲームオーディオ・ボイス・音響理論、全39章。</span> <span data-k="notes.note">自作の勉強ノートアプリの章です（ノートは韓国語で書いています）。</span></p></div>
+    <div class="free-photos" data-sec="notes"></div>
+    
+    <div class="nwhy" data-m="box:notesWhy">
+      <p class="nwhy-mark" data-k="labels.notesWhy">なぜ？</p>
+      <div class="nwhy-text" data-k="notes.why"><p data-k="notes.why.0">足りないところを見つけたら、そのままにしません。次の作品で少しでも成長した姿を見せたいので、まず「なぜ」から勉強します。</p><p data-k="notes.why.1">そのため、勉強した内容は自作の勉強ノートアプリに章ごとに整理しています。下で実際のノート画面と、これまでに書いた章をご覧いただけます。</p></div>
+    </div>
+    <div class="ntabs" role="tablist" aria-label="勉強ノートの分類"><button type="button" class="ntab on" role="tab" aria-selected="true" data-tab="shots"><span data-k="labels.noteShotsTab">ノート画面</span></button></div>
+    
+      <div class="npanel" role="tabpanel" data-panel="shots"><div class="nshots">
+      <div class="gal" data-gal="n" data-slots="[&quot;사진넣기/학습노트_1&quot;,&quot;사진넣기/학습노트_2&quot;,&quot;사진넣기/학습노트_3&quot;,&quot;사진넣기/학습노트_4&quot;]" data-m="gal:n">
+        <figure class="gal-main"><img src="img/사진넣기_학습노트_1.jpg" alt="18章 ボイス収録ディレクション・ディレクターの仕事を役割・内容・判断ごとに整理（右は章の目次）" draggable="false"><figcaption>18章 ボイス収録ディレクション・ディレクターの仕事を役割・内容・判断ごとに整理（右は章の目次）</figcaption></figure>
+        <div class="gal-thumbs"><button type="button" class="on" data-src="img/사진넣기_학습노트_1.jpg" data-cap="18章 ボイス収録ディレクション・ディレクターの仕事を役割・内容・判断ごとに整理（右は章の目次）" aria-label="18章 ボイス収録ディレクション・ディレクターの仕事を役割・内容・判断ごとに整理（右は章の目次）"><img src="img/사진넣기_학습노트_1.jpg" alt="" loading="lazy" draggable="false"></button><button type="button" class="" data-src="img/사진넣기_학습노트_2.jpg" data-cap="19章 ボイスエンジニアリング・セリフの問題ガイド（症状・原因・対処）" aria-label="19章 ボイスエンジニアリング・セリフの問題ガイド（症状・原因・対処）"><img src="img/사진넣기_학습노트_2.jpg" alt="" loading="lazy" draggable="false"></button><button type="button" class="" data-src="img/사진넣기_학습노트_3.jpg" data-cap="28章 iZotope RX・一般的なEQやコンプとの違いから、モジュール、作業の順番、ショートカットまで" aria-label="28章 iZotope RX・一般的なEQやコンプとの違いから、モジュール、作業の順番、ショートカットまで"><img src="img/사진넣기_학습노트_3.jpg" alt="" loading="lazy" draggable="false"></button><button type="button" class="" data-src="img/사진넣기_학습노트_4.jpg" data-cap="21章 スタジオセッションの進め方・収録セッションの役割と流れ" aria-label="21章 スタジオセッションの進め方・収録セッションの役割と流れ"><img src="img/사진넣기_학습노트_4.jpg" alt="" loading="lazy" draggable="false"></button></div>
+      </div></div>
+      </div>
+  </div></section>
+
+  <section id="contact"><div class="wrap">
+    <div class="sec-h"><h2><span data-k="labels.contact">連絡先</span></h2></div>
+    <div class="free-photos" data-sec="contact"></div>
+    <dl class="contact">
+      <dt><span data-k="labels.contactEmail">メール</span></dt><dd><span class="sel" id="mail" data-k="profile.email">bluepop98@naver.com</span><button type="button" class="copy" id="copyMail">Copy</button></dd>
+      <dt><span data-k="labels.contactYoutube">YouTube</span></dt><dd><a href="https://www.youtube.com/@%EA%B9%80%EA%B7%9C%ED%97%8C%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4" target="_blank" rel="noopener"><span data-k="labels.youtubeText">キム・ギュホン ポートフォリオチャンネル</span> ↗</a></dd>
+    </dl>
+  </div></section>
+</main>
+
+  <article class="plan" id="plan-tlou2" hidden><div class="wrap">
+    <p class="back"><a href="#videos"><span data-k="labels.planBack">← ポートフォリオに戻る</span></a></p>
+    <header class="plan-h" data-m="head:plans.0">
+      <p class="kind" data-k="plans.0.kind">Sound design document</p>
+      <h1 data-k="plans.0.title">The Last of Us Part II・サウンド企画書</h1>
+      <p class="sub" data-k="plans.0.sub">フォーリー収録・距離による息づかいトリガー・エリーのボイスディレクション</p>
+      <p class="plan-play"><button type="button" class="cue" data-vi="0" data-t="0"><span data-k="labels.planPlay">▶ この映像を見る</span></button></p>
+    </header>
+    <div class="plan-body" data-m="box:plans.0"><div class="pb pb-h2" data-pb="0.0"><h2 data-k="plans.0.blocks.0.text">プロジェクト</h2></div>
+<div class="pb pb-ul" data-pb="0.1"><ul class="lines" data-k="plans.0.blocks.1.items"><li data-k="plans.0.blocks.1.items.0">自分で収録したフォーリーを中心にしたゲームサウンドデザイン</li><li data-k="plans.0.blocks.1.items.1">実際のゲームプレイのような没入感</li></ul></div>
+<div class="pb pb-h2" data-pb="0.2"><h2 data-k="plans.0.blocks.2.text">シチュエーション</h2></div>
+<div class="pb pb-p" data-pb="0.3"><p class="pp" data-k="plans.0.blocks.3.text">エリーが敵から逃れ、建物の中で反撃を始める。</p></div>
+<div class="pb pb-ul" data-pb="0.4"><ul class="lines" data-k="plans.0.blocks.4.items"><li data-k="plans.0.blocks.4.items.0">流れ：潜入 → 追跡 → 近接戦</li><li data-k="plans.0.blocks.4.items.1">襲ってくる敵との生き残りをかけた戦い</li></ul></div>
+<div class="pb pb-h2" data-pb="0.5"><h2 data-k="plans.0.blocks.5.text">環境音（AMB）</h2></div>
+<div class="pb pb-h3" data-pb="0.6"><h3 data-k="plans.0.blocks.6.text">屋外</h3></div>
+<div class="pb pb-dl" data-pb="0.7"><dl class="pdl"><dt data-k="plans.0.blocks.7.rows.0.0">天気</dt><dd data-k="plans.0.blocks.7.rows.0.1">霧の夜明けから朝へ</dd><dt data-k="plans.0.blocks.7.rows.1.0">トーン</dt><dd data-k="plans.0.blocks.7.rows.1.1">冷たく湿った空気、見通しの悪さ</dd></dl></div>
+<div class="pb pb-h3" data-pb="0.8"><h3 data-k="plans.0.blocks.8.text">屋内</h3></div>
+<div class="pb pb-dl" data-pb="0.9"><dl class="pdl"><dt data-k="plans.0.blocks.9.rows.0.0">空間</dt><dd data-k="plans.0.blocks.9.rows.0.1">響きのある建物の中</dd><dt data-k="plans.0.blocks.9.rows.1.0">雰囲気のキーワード</dt><dd data-k="plans.0.blocks.9.rows.1.1">ホラー／シネマティック／恐怖</dd></dl></div>
+<div class="pb pb-quote" data-pb="0.10"><blockquote data-k="plans.0.blocks.10.text">部屋の残響と低域の環境音を使い、緊張が簡単には解けないようにしました。</blockquote></div>
+<div class="pb pb-p" data-pb="0.11"><p class="pp" data-k="plans.0.blocks.11.text">緊張感と重い空気を作るため、フォーリーで雰囲気を形作りました。</p></div>
+<div class="pb pb-ul" data-pb="0.12"><ul class="lines" data-k="plans.0.blocks.12.items"><li data-k="plans.0.blocks.12.items.0">短簫（韓国の竹笛）を通る風</li><li data-k="plans.0.blocks.12.items.1">風船から抜ける空気</li><li data-k="plans.0.blocks.12.items.2">ギター弦をこする音</li></ul></div>
+<div class="pb pb-h2" data-pb="0.13"><h2 data-k="plans.0.blocks.13.text">キャラクターサウンド</h2></div>
+<div class="pb pb-h3" data-pb="0.14"><h3 data-k="plans.0.blocks.14.text">エリー</h3></div>
+<div class="pb pb-dl" data-pb="0.15"><dl class="pdl"><dt data-k="plans.0.blocks.15.rows.0.0">性格</dt><dd data-k="plans.0.blocks.15.rows.0.1">大胆で勇敢</dd><dt data-k="plans.0.blocks.15.rows.1.0">声</dt><dd data-k="plans.0.blocks.15.rows.1.1">女性、17〜19歳／中音域／緊張の混じった怒り</dd><dt data-k="plans.0.blocks.15.rows.2.0">フォーリー</dt><dd data-k="plans.0.blocks.15.rows.2.1">リュック、シャツ、ジーンズ、普通のスニーカー</dd><dt data-k="plans.0.blocks.15.rows.3.0">武器</dt><dd data-k="plans.0.blocks.15.rows.3.1">弓矢（通常／爆発）、マチェーテ</dd></dl></div>
+<div class="pb pb-h3" data-pb="0.16"><h3 data-k="plans.0.blocks.16.text">敵</h3></div>
+<div class="pb pb-dl" data-pb="0.17"><dl class="pdl"><dt data-k="plans.0.blocks.17.rows.0.0">種類</dt><dd data-k="plans.0.blocks.17.rows.0.1">女性／力強い男性／太く力のある男性の声</dd><dt data-k="plans.0.blocks.17.rows.1.0">フォーリー</dt><dd data-k="plans.0.blocks.17.rows.1.1">ジャケット、レインスーツ、バッグ、ショットガンのフォーリー</dd><dt data-k="plans.0.blocks.17.rows.2.0">武器</dt><dd data-k="plans.0.blocks.17.rows.2.1">弓矢、ハンマー（重い武器）</dd></dl></div>
+<div class="pb pb-h2" data-pb="0.18"><h2 data-k="plans.0.blocks.18.text">UIサウンドのコンセプト</h2></div>
+<div class="pb pb-p" data-pb="0.19"><p class="pp" data-k="plans.0.blocks.19.text">よくあるUI音ではなく、実際の物の動きでUIの音を作りました。</p></div>
+<div class="pb pb-dl" data-pb="0.20"><dl class="pdl"><dt data-k="plans.0.blocks.20.rows.0.0">物</dt><dd data-k="plans.0.blocks.20.rows.0.1">ギア／缶／ゴミ／フォーリー用の物</dd></dl></div>
+<div class="pb pb-h3" data-pb="0.21"><h3 data-k="plans.0.blocks.21.text">クラフトUIのスケッチ</h3></div>
+<div class="pb pb-ul" data-pb="0.22"><ul class="lines" data-k="plans.0.blocks.22.items"><li data-k="plans.0.blocks.22.items.0">電球を取り替える</li><li data-k="plans.0.blocks.22.items.1">布で何かを包む</li><li data-k="plans.0.blocks.22.items.2">低い音の缶が動く</li><li data-k="plans.0.blocks.22.items.3">小枝がこすれ合う</li></ul></div>
+<div class="pb pb-quote" data-pb="0.23"><blockquote data-k="plans.0.blocks.23.text">実際の物を組み合わせることで、手に持っているような手触りのあるクラフトにしました。</blockquote></div>
+<div class="pb pb-h2" data-pb="0.24"><h2 data-k="plans.0.blocks.24.text">距離によるトリガーシステム</h2></div>
+<div class="pb pb-p" data-pb="0.25"><p class="pp" data-k="plans.0.blocks.25.text">敵との距離が変わると、エリーの息づかいが段階的に変わります。</p></div>
+<div class="pb pb-ul" data-pb="0.26"><ul class="lines" data-k="plans.0.blocks.26.items"><li data-k="plans.0.blocks.26.items.0">画面のHUDがなくても危険が伝わる</li><li data-k="plans.0.blocks.26.items.1">プレイヤーの心理に直接はたらく</li></ul></div>
+<div class="pb pb-img" data-pb="0.27"><figure class="pfig" data-slot="사진넣기/기획서_TLOU2_거리트리거" data-m="fig:사진넣기/기획서_TLOU2_거리트리거" style="--w:960px"><img src="img/사진넣기_기획서_TLOU2_거리트리거.jpg" alt="敵との距離による息づかいトリガーの段階" loading="lazy" draggable="false"><figcaption data-k="plans.0.blocks.27.caption">敵との距離による息づかいトリガーの段階</figcaption></figure></div>
+<div class="pb pb-dl" data-pb="0.28"><dl class="pdl"><dt data-k="plans.0.blocks.28.rows.0.0">5m以上</dt><dd data-k="plans.0.blocks.28.rows.0.1">息づかいなし・比較的安全な範囲</dd><dt data-k="plans.0.blocks.28.rows.1.0">2〜3m</dt><dd data-k="plans.0.blocks.28.rows.1.1">軽く短い息・警戒</dd><dt data-k="plans.0.blocks.28.rows.2.0">1m以内</dt><dd data-k="plans.0.blocks.28.rows.2.1">荒く重い息・見つかる直前の極度の緊張</dd></dl></div>
+<div class="pb pb-quote" data-pb="0.29"><blockquote data-k="plans.0.blocks.29.text">特に1m以内では、「今動いたら見つかる」ということを音で伝えるため、わざと息づかいを荒くしました。</blockquote></div>
+<div class="pb pb-h2" data-pb="0.30"><h2 data-k="plans.0.blocks.30.text">サウンドパレット（レコーダー：PCM-A10）</h2></div>
+<div class="pb pb-h3" data-pb="0.31"><h3 data-k="plans.0.blocks.31.text">弓を引く音と矢</h3></div>
+<div class="pb pb-ul" data-pb="0.32"><ul class="lines" data-k="plans.0.blocks.32.items"><li data-k="plans.0.blocks.32.items.0">紙を巻いた木の箸をねじって、弓の弦の張りを表現</li><li data-k="plans.0.blocks.32.items.1">加工した箸をこすり合わせて、弓を引く音に</li></ul></div>
+<div class="pb pb-h3" data-pb="0.33"><h3 data-k="plans.0.blocks.33.text">草の上の足音</h3></div>
+<div class="pb pb-ul" data-pb="0.34"><ul class="lines" data-k="plans.0.blocks.34.items"><li data-k="plans.0.blocks.34.items.0">袋に入れた硬貨で草を踏む質感を表現</li><li data-k="plans.0.blocks.34.items.1">金属的な音を取るため、1k〜20kをEQでカット</li><li data-k="plans.0.blocks.34.items.2">映像に合わせてピッチ-1とリバーブ</li></ul></div>
+<div class="pb pb-h2" data-pb="0.35"><h2 data-k="plans.0.blocks.35.text">エリーのボイスディレクション</h2></div>
+<div class="pb pb-h3" data-pb="0.36"><h3 data-k="plans.0.blocks.36.text">声優を自分でキャスティングした理由</h3></div>
+<div class="pb pb-p" data-pb="0.37"><p class="pp" data-k="plans.0.blocks.37.text">一番の目的は、キャラクターに本物の個性を持たせ、できる限り強い没入感を作ることでした。</p></div>
+<div class="pb pb-p" data-pb="0.38"><p class="pp" data-k="plans.0.blocks.38.text">特に『The Last of Us Part II』では、息づかい、小さな気配の音、セリフで緊張感を作ろうとしました。</p></div>
+<div class="pb pb-h3" data-pb="0.39"><h3 data-k="plans.0.blocks.39.text">キャスティングの条件</h3></div>
+<div class="pb pb-dl" data-pb="0.40"><dl class="pdl"><dt data-k="plans.0.blocks.40.rows.0.0">年齢</dt><dd data-k="plans.0.blocks.40.rows.0.1">17〜19歳くらい</dd><dt data-k="plans.0.blocks.40.rows.1.0">性別</dt><dd data-k="plans.0.blocks.40.rows.1.1">女性</dd></dl></div>
+<div class="pb pb-ul" data-pb="0.41"><ul class="lines" data-k="plans.0.blocks.41.items"><li data-k="plans.0.blocks.41.items.0">荒々しく、戦う人らしいキャラクター</li><li data-k="plans.0.blocks.41.items.1">けがをしていて、敵の目を避けながら動いている</li><li data-k="plans.0.blocks.41.items.2">極度の緊張とストレスの中にいる</li><li data-k="plans.0.blocks.41.items.3">戦闘以外では静かにささやき、戦闘中の激しい動きでは強く鋭い声</li></ul></div>
+<div class="pb pb-h3" data-pb="0.42"><h3 data-k="plans.0.blocks.42.text">息づかいトリガー</h3></div>
+<div class="pb pb-p" data-pb="0.43"><p class="pp" data-k="plans.0.blocks.43.text">敵に近づくほど息づかいが荒くなります。移動中にも時々息づかいを入れました。（距離の段階は上のトリガーシステムと同じです。）</p></div>
+<div class="pb pb-h3" data-pb="0.44"><h3 data-k="plans.0.blocks.44.text">シーンごとのディレクション</h3></div>
+<div class="pb pb-p" data-pb="0.45"><p class="pp" data-k="plans.0.blocks.45.text">声優にシーンごとに伝えたディレクションです。近い感じの範囲で調整できる余地を残しました。時間をクリックすると、その場面から映像が再生されます。</p></div>
+<div class="pb pb-cues" data-pb="0.46"><ol class="cues"><li><button type="button" class="cue" data-vi="0" data-t="0" aria-label="0:00 – 0:07の場面を再生"><span data-k="plans.0.blocks.46.rows.0.0">0:00 – 0:07</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.0.1">刺さった矢を抜く。抜く瞬間まで痛みが高まり（うなりが上がっていき…鋭く息をのむ！）→ 抜いた後、痛みが残ったまま2秒ほど荒い息</span></li><li><button type="button" class="cue" data-vi="0" data-t="36" aria-label="0:36 – 0:40の場面を再生"><span data-k="plans.0.blocks.46.rows.1.0">0:36 – 0:40</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.1.1">「見つからないように気をつけないと…」（慎重な声で）</span></li><li><button type="button" class="cue" data-vi="0" data-t="46" aria-label="0:46 – 0:48の場面を再生"><span data-k="plans.0.blocks.46.rows.2.0">0:46 – 0:48</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.2.1">口を閉じたまま、力を込めて矢を抜く：んん…はっ！</span></li><li><button type="button" class="cue" data-vi="0" data-t="50" aria-label="0:50の場面を再生"><span data-k="plans.0.blocks.46.rows.3.0">0:50</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.3.1">「これでいい…」</span></li><li><button type="button" class="cue" data-vi="0" data-t="58" aria-label="0:58の場面を再生"><span data-k="plans.0.blocks.46.rows.4.0">0:58</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.4.1">「くそ…」</span></li><li><button type="button" class="cue" data-vi="0" data-t="71" aria-label="1:11の場面を再生"><span data-k="plans.0.blocks.46.rows.5.0">1:11</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.5.1">息を整えて動き出す：鼻から大きく吸って、戦いが始まると同時に短く「ふっ！」と吐く</span></li><li><button type="button" class="cue" data-vi="0" data-t="76" aria-label="1:16 – 1:18の場面を再生"><span data-k="plans.0.blocks.46.rows.6.0">1:16 – 1:18</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.6.1">走りながらの荒い息と、刃を振り下ろす時の激しい「はあっ！！」</span></li><li><button type="button" class="cue" data-vi="0" data-t="81" aria-label="1:21の場面を再生"><span data-k="plans.0.blocks.46.rows.7.0">1:21</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.7.1">よける時の驚いた声</span></li><li><button type="button" class="cue" data-vi="0" data-t="82" aria-label="1:22 – 1:25の場面を再生"><span data-k="plans.0.blocks.46.rows.8.0">1:22 – 1:25</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.8.1">エリーの攻撃の声：1撃目「はっ！」／2撃目は少し弱く「っ…！」／3撃目は武器がぶつかりこすれる中で力んで「んんっ…！！」</span></li><li><button type="button" class="cue" data-vi="0" data-t="85" aria-label="1:25の場面を再生"><span data-k="plans.0.blocks.46.rows.9.0">1:25</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.9.1">首を絞められて：「くっ！」</span></li><li><button type="button" class="cue" data-vi="0" data-t="87" aria-label="1:27の場面を再生"><span data-k="plans.0.blocks.46.rows.10.0">1:27</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.10.1">「くっ…！」床に投げられてうめく（1:25〜1:30のリファレンスの声くらい、またはもっと大きく）</span></li><li><button type="button" class="cue" data-vi="0" data-t="90" aria-label="1:30の場面を再生"><span data-k="plans.0.blocks.46.rows.11.0">1:30</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.11.1">鋭く息をのむような驚いた声：「はっ！」</span></li><li><button type="button" class="cue" data-vi="0" data-t="90" aria-label="1:30 – 1:36の場面を再生"><span data-k="plans.0.blocks.46.rows.12.0">1:30 – 1:36</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.12.1">走る：荒い息で移動</span></li><li><button type="button" class="cue" data-vi="0" data-t="97" aria-label="1:37の場面を再生"><span data-k="plans.0.blocks.46.rows.13.0">1:37</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.13.1">歯を食いしばって「んんっ！！ああっ！」と動く → 1:39で敵を打つ：「死ね！！！」</span></li><li><button type="button" class="cue" data-vi="0" data-t="100" aria-label="1:40の場面を再生"><span data-k="plans.0.blocks.46.rows.14.0">1:40</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.14.1">矢を拾う：荒く疲れ切った息</span></li><li><button type="button" class="cue" data-vi="0" data-t="102" aria-label="1:42の場面を再生"><span data-k="plans.0.blocks.46.rows.15.0">1:42</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.15.1">攻撃を受ける：痛みで「うっ…！」</span></li><li><button type="button" class="cue" data-vi="0" data-t="105" aria-label="1:45 – 1:50の場面を再生"><span data-k="plans.0.blocks.46.rows.16.0">1:45 – 1:50</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.16.1">弓を3回撃ち、そのたびに感情が高まる：1発目「死ね…！」／2発目「お願い…」／3発目「死ねって言ってるの！」（最高潮）→ その後、疲れ切って息を吐きながら歩き出す</span></li><li><button type="button" class="cue" data-vi="0" data-t="119" aria-label="1:59の場面を再生"><span data-k="plans.0.blocks.46.rows.17.0">1:59</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.17.1">怒りに満ちて敵を打とうとする：「黙れ！！」</span></li><li><button type="button" class="cue" data-vi="0" data-t="131" aria-label="2:11の場面を再生"><span data-k="plans.0.blocks.46.rows.18.0">2:11</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.18.1">刃を振り下ろす：「はあっ！！」</span></li><li><button type="button" class="cue" data-vi="0" data-t="132" aria-label="2:12からの場面を再生"><span data-k="plans.0.blocks.46.rows.19.0">2:12から</span></button><span class="cue-d" data-k="plans.0.blocks.46.rows.19.1">アウトロまで：少し寒気で震えるような、焦った息</span></li></ol></div>
+<div class="pb pb-h2" data-pb="0.47"><h2 data-k="plans.0.blocks.47.text">デザインの意図</h2></div>
+<div class="pb pb-ul" data-pb="0.48"><ul class="lines" data-k="plans.0.blocks.48.items"><li data-k="plans.0.blocks.48.items.0">このサウンドデザインは、音で情報を伝えると同時に、プレイヤーの心理にはたらきかけるために音を使っています。</li><li data-k="plans.0.blocks.48.items.1">距離による息づかい、実際の物で作ったフォーリー、空間を感じさせる環境音によって、画面を見なくても状況が感じられるようにしました。</li></ul></div>
+<div class="pb pb-h2" data-pb="0.49"><h2 data-k="plans.0.blocks.49.text">まとめ</h2></div>
+<div class="pb pb-p" data-pb="0.50"><p class="pp" data-k="plans.0.blocks.50.text">このプロジェクトの目標は、原作の切迫した圧倒的な戦闘を音で生き生きと表現しながら、声と音を中心にした映画のワンシーンのように作り上げることでした。</p></div>
+<div class="pb pb-p" data-pb="0.51"><p class="pp" data-k="plans.0.blocks.51.text">実際のゲームプレイの音と映画のようなボイスディレクションを組み合わせ、ゲームと映画の境目をなくすことを目指しました。大切にしたのは、ただシーンを見ているのではなく、自分がプレイしているように感じてもらうことです。</p></div>
+<div class="pb pb-p" data-pb="0.52"><p class="pp" data-k="plans.0.blocks.52.text">この作品は、音をゲームシステムの一部として、そして物語を伝える道具として見る、私の考え方を表しています。お聴きいただき、ありがとうございました。</p></div></div>
+    <p class="back end"><a href="#videos"><span data-k="labels.planBack">← ポートフォリオに戻る</span></a></p>
+  </div></article>
+<footer><div class="wrap"><span data-k="labels.copyright">© 2026 Gyu Hun Kim.</span> <span data-k="labels.footer">このページの映像・画像・文章の複製や再配布はご遠慮ください。</span></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.8/dist/hls.min.js"></script>
+<script>
+(function () {
+  var VIDS = [{"id":"qJQO0FiphRs","si":0,"title":"The Last of Us Part II","kind":"Trailer (gameplay edit) · Sound Redesign","meta":[["開発・販売","Naughty Dog · Sony Interactive Entertainment"],["ジャンル","アクションアドベンチャー・サバイバルホラー"],["担当","ボイスディレクション（エリー）、フォーリー収録、サウンドデザイン、ミックス＆マスター"],["DAW","Cubase 13"]],"points":["ボイス：エリー役の声優を自分でキャスティングし、ディレクションしました。17〜19歳くらい、中音域、緊張の混じった怒りという方向性を決め、矢を引き抜く場面から隠れながらのささやき声まで、すべての瞬間にディレクションを書きました。","フォーリー：PCM-A10で自分でフォーリーを収録し、そこから効果音を作りました。弓の弦の張りは紙を巻いた木の箸をねじって、草の上の足音は袋に入れた硬貨で作りました。UIの音も電球、布、缶など実際の物から作っています。","演出と操作の区別：矢を抜く場面や短いセリフのような演出パートでは、カットシーンのように編集に合わせて声と音を動かし、感情の山をはっきりさせました。操作パートではゲームそのもののように音が働きます。敵との距離によってエリーの息づかいが変わり（5m以上はなし、2〜3mで軽く、1m以内で荒く）、HUDがなくても危険が伝わります。","環境音：建物の残響の下に、短簫（タンソ）の風の音、風船から抜ける空気、ギター弦をこする音を敷き、緊張が完全には解けないようにしました。"],"links":[["サウンド企画書・ボイスディレクション","#plan-tlou2"]],"chapters":[[0,"0:00","潜入・店内の敵を観察","0:27"],[43,"0:43","ステルスキル・近距離のフォーリー","0:50"],[65,"1:05","クラフト画面・UIサウンド","1:09"],[72,"1:12","発見される・近接戦闘","1:27"],[102,"1:42","弓と近接攻撃","1:57"],[118,"1:58","最後の一撃・エリーのセリフ","2:16"]],"hls":"../portfolio-en/media/qJQO0FiphRs/hls/index.txt","fallback":"../portfolio-en/media/qJQO0FiphRs/fallback.mp4","poster":"img/사진넣기_영상_qJQO0FiphRs.jpg","duration":146,"height":1080,"region":"both"},{"id":"j7EaNF1skhE","si":1,"title":"The First Berserker: Khazan インゲーム映像","kind":"","meta":[],"points":["［ イヤホンまたはヘッドホンでお聴きいただくと、より楽しめます ］","- ゲーム名：The First Berserker: Khazan","- 開発：Neople ／ 販売：Nexon","- エンジン：Unreal Engine 4","- ジャンル：アクションRPG［ ハードコアアクション／ソウルライク ］","- 対応機種：Steam（PC）／ PlayStation 5 ／ Xbox Series X|S","- 使用DAW：Cubase 13","［ サウンドデザインの内容 ］","- 狂暴なバーサーカーであるカザンの性格を活かすため、重く金属感のある打撃音と血しぶきのゴア音を中心に制作しました。","- 大剣のスイング／ヒット／スクレイプ／リングの音は、自作の素材（MSFX）をレイヤーし、武器の重さと刃の響きを表現しました。","- 鎧と鎖がぶつかるメタルリングのレイヤーを加え、近接戦闘の質感を出しました。","- ボスの紫色の闇魔法は、カザンの赤い血のスキルと対比になるよう、マジック／エナジー系の素材で別の色合いにデザインしました。"],"links":[],"chapters":[],"hls":"../portfolio-en/media/j7EaNF1skhE/hls/index.txt","fallback":"../portfolio-en/media/j7EaNF1skhE/fallback.mp4","poster":"img/사진넣기_영상_j7EaNF1skhE.jpg","duration":74,"height":1080,"region":"both"},{"id":"rc-eExao-ls","si":2,"title":"LORDNINE","kind":"Trailer · Sound Redesign","meta":[["開発・販売","NX3 Games · Smilegate"],["ジャンル","MMORPG"],["エンジン","Unity"],["担当","サウンドデザイン、ミックス＆マスター"],["DAW","Cubase 13"]],"points":["ビルドアップ：トレーラーが盛り上がっていく部分ではライザーで緊張を運び、次のカットへの期待を高めました。","スケール：軍勢が集まる場面では、サブベースの素材とScheps 73で低域に重さと響きを加え、ただ大きいだけでなく重みのある群衆に聞こえるようにしました。"],"links":[],"chapters":[],"hls":"../portfolio-en/media/rc-eExao-ls/hls/index.txt","fallback":"../portfolio-en/media/rc-eExao-ls/fallback.mp4","poster":"img/사진넣기_영상_rc-eExao-ls.jpg","duration":77,"height":1080,"region":"both"},{"id":"NO-JkYMjjtY","si":3,"title":"Back 4 Blood インゲーム映像","kind":"","meta":[],"points":["［ イヤホンまたはヘッドホンでお聴きいただくと、より楽しめます ］","- ゲーム名：Back 4 Blood","- エンジン：Unreal Engine 4","- 対応機種：Steam（PC）／ PlayStation 5 ／ Xbox","［ サウンドデザインの内容 ］","Back 4 Blood はリアルなサウンドを表現したゲームなので、銃声と被弾音をリアリティのある音で制作しました。","［ インゲームで意識した点 ］","- マップの特徴に合わせて環境音を設定しました。","1) 建物の中：こもった感じの室内空間（足音：コンクリート、金属）","2) 橋：鉄の屋根に雨が落ちてくる感じの環境音（足音：木）","3) 小屋：ドアの外を見る視点では雨音がはっきり聞こえるようにし、雨音のせいで銃声が広がりきらないように表現しました。","- 視点やプレイヤーの位置によって変わるサウンドを制作しました。"],"links":[],"chapters":[],"hls":"../portfolio-en/media/NO-JkYMjjtY/hls/index.txt","fallback":"../portfolio-en/media/NO-JkYMjjtY/fallback.mp4","poster":"img/사진넣기_영상_NO-JkYMjjtY.jpg","duration":56,"height":1080,"region":"both"},{"id":"wBZLKIVBC8w","si":4,"title":"Back 4 Blood","kind":"Trailer · Sound Redesign","meta":[["開発・販売","Turtle Rock Studios · Warner Bros. Games"],["エンジン","Unreal Engine 4"],["プラットフォーム","PC · PS5 · Xbox"],["担当","ボイスディレクション（特殊ゾンビ）、サウンドデザイン、ミックス＆マスター"],["DAW","Cubase 13"]],"points":["ボイス：特殊ゾンビの声を自分でディレクションし、それぞれの個性が出るようにしました。","リアリティ：銃声、被弾音、フォーリーを地に足のついた音で作り、実際の録音のように空間に定位させました。","緊張感：トレーラーの下に低域のベッドを流し、見ている間ずっと緊張が続くようにしました。"],"links":[],"chapters":[],"hls":"../portfolio-en/media/wBZLKIVBC8w/hls/index.txt","fallback":"../portfolio-en/media/wBZLKIVBC8w/fallback.mp4","poster":"img/사진넣기_영상_wBZLKIVBC8w.jpg","duration":107,"height":1080,"region":"both"},{"id":"4crZ2vKl_8o","si":5,"title":"Dungeon & Fighter: Overkill","kind":"Trailer · Sound Redesign","meta":[["開発・販売","Neople · Nexon"],["エンジン","Unreal Engine 4"],["ジャンル","アクション"],["プラットフォーム","PC · Android · iOS"],["担当","サウンドデザイン、ミックス＆マスター"],["DAW","Cubase 13"]],"points":["打撃感：原作『アラド戦記』らしい、歯切れがよく爽快な打撃感をサウンドの中心にしました。","装備の個性：中音域の音を前に出し、装備ひとつひとつの個性を引き出しました。","重さ：低域の衝撃音で画面を壮大に感じさせ、スピーカーでも音がしっかり聞こえるようにして、各シーンをより楽しくしました。"],"links":[],"chapters":[],"hls":"../portfolio-en/media/4crZ2vKl_8o/hls/index.txt","fallback":"../portfolio-en/media/4crZ2vKl_8o/fallback.mp4","poster":"img/사진넣기_영상_4crZ2vKl_8o.jpg","duration":68,"height":1080,"region":"both"},{"id":"06eVmlKTqvA","si":6,"title":"Dungeons & Dragons","kind":"Cinematic trailer · Sound Redesign","meta":[["映像","非公式シネマティック"],["ジャンル","ファンタジーアクション"],["担当","サウンドデザイン、キャラクターボイス編集、ミックス＆マスター"],["DAW","Cubase 13"]],"points":["ドラゴン：ドラゴンの怒りを中低域で表現して戦いの緊張を保ち、その間にコミカルな場面を入れて楽しさを出しました。","ボイス：キャラクターに合うライブラリ素材を探し、場面ごとに合う声を配置しました。","フォーリー：壮大な3D映像に合わせてフォーリーに特に気を配り、パンニングでよりリアルに聞こえるようにしました。"],"links":[],"chapters":[],"hls":"../portfolio-en/media/06eVmlKTqvA/hls/index.txt","fallback":"../portfolio-en/media/06eVmlKTqvA/fallback.mp4","poster":"img/사진넣기_영상_06eVmlKTqvA.jpg","duration":105,"height":1080,"region":"both"}];
+  var REEL_L = {"all":"All","west":"Western","asia":"Asian"};
+  var V = document.getElementById('player'), state = document.getElementById('vstate'), info = document.getElementById('vinfo');
+  var hls = null, cur = -1, usingFallback = false, watchdog = null;
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function mmss(s) { return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
+  // 영상 설명 칸의 제목 글 — site.json labels 에서 고칠 수 있음(편집 모드 data-k = labels.*)
+  var LBL = {"vCredit":"designed / mixed & mastered by Gyu Hun Kim","vPoints":"サウンドデザイン","vChapters":"見どころ","vLinks":"関連資料","vYoutube":"YouTubeで見る"};
+  function lb(key, tag) { return '<' + tag + ' data-k="labels.' + key + '">' + esc(LBL[key]) + '</' + tag + '>'; }
+  function setState(q) { var v = VIDS[cur]; state.innerHTML = '<span><b>' + q + '</b></span><span>' + esc(v.kind) + ' · ' + mmss(v.duration) + '</span>' + lb('vCredit', 'span'); }
+  function fallback() {
+    if (usingFallback) return;
+    usingFallback = true;
+    var t = V.currentTime || 0, wasPlaying = !V.paused;
+    if (hls) { hls.destroy(); hls = null; }
+    V.src = VIDS[cur].fallback;
+    V.addEventListener('loadedmetadata', function once() { V.removeEventListener('loadedmetadata', once); if (t) V.currentTime = t; if (wasPlaying) V.play().catch(function () {}); });
+    setState('720p backup video');
+  }
+  function load(i, autoplay) {
+    if (i === cur) return;
+    cur = i; usingFallback = false; clearTimeout(watchdog);
+    var v = VIDS[i];
+    if (hls) { hls.destroy(); hls = null; }
+    V.removeAttribute('src'); V.load();
+    V.poster = v.poster;
+    if (window.Hls && window.Hls.isSupported()) {
+      hls = new window.Hls({ maxBufferLength: 20, capLevelToPlayerSize: false });
+      hls.on(window.Hls.Events.ERROR, function (e, d) { if (d && d.fatal) fallback(); });
+      hls.loadSource(v.hls); hls.attachMedia(V);
+      setState(v.height + 'p');
+    } else if (V.canPlayType('application/vnd.apple.mpegurl')) {
+      V.src = v.hls; setState(v.height + 'p');
+    } else { fallback(); }
+    if (autoplay) V.play().catch(function () {});
+    renderInfo(v);
+    document.querySelectorAll('.vrow').forEach(function (b) { b.classList.toggle('on', +b.dataset.i === i); });
+  }
+  V.addEventListener('error', function () { if (!usingFallback) fallback(); });
+  // 화면 가운데 누르기 = 재생 · 정지, 두 번 누르기 = 전체 화면
+  var PL = V.parentNode, hit = document.getElementById('vhit'), clickT = null;
+  function syncPaused() { PL.classList.toggle('paused', V.paused); }
+  V.addEventListener('play', syncPaused); V.addEventListener('pause', syncPaused); V.addEventListener('ended', syncPaused);
+  hit.addEventListener('click', function () {
+    clearTimeout(clickT);
+    clickT = setTimeout(function () { if (V.paused) V.play().catch(function () {}); else V.pause(); }, 220);
+  });
+  hit.addEventListener('dblclick', function () {
+    clearTimeout(clickT);
+    var fs = document.fullscreenElement;
+    if (fs) document.exitFullscreen().catch(function () {});
+    else (PL.requestFullscreen ? PL.requestFullscreen() : V.requestFullscreen ? V.requestFullscreen() : Promise.resolve()).catch(function () {});
+  });
+  hit.addEventListener('keydown', function (e) { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); if (V.paused) V.play().catch(function () {}); else V.pause(); } });
+  // 재생을 눌렀는데 6초 동안 화면이 멈춰 있으면 예비 영상으로
+  V.addEventListener('play', function () {
+    clearTimeout(watchdog);
+    var t0 = V.currentTime;
+    watchdog = setTimeout(function () { if (!V.paused && V.currentTime === t0 && !usingFallback) fallback(); }, 6000);
+  });
+  function renderInfo(v) {
+    var b = 'videos.' + v.si + '.', k = function (p) { return ' data-k="' + b + p + '"'; };
+    var h = '<p class="kind"' + k('kind') + '>' + esc(v.kind) + '</p><h3' + k('title') + '>' + esc(v.title) + '</h3>';
+    if (v.meta && v.meta.length) h += '<dl class="vmeta">' + v.meta.map(function (m, i) { return '<dt' + k('meta.' + i + '.0') + '>' + esc(m[0]) + '</dt><dd' + k('meta.' + i + '.1') + '>' + esc(m[1]) + '</dd>'; }).join('') + '</dl>';
+    if (v.points && v.points.length) h += '<div class="vblock">' + lb('vPoints', 'h4') + '<ul class="lines"' + k('points') + '>' + v.points.map(function (p, i) { return '<li' + k('points.' + i) + '>' + esc(p) + '</li>'; }).join('') + '</ul></div>';
+    // 구간은 늘 그린다(편집 모드에서 [+ 구간 더하기]를 쓸 수 있게) — 공개 페이지에선 구간이 없으면 칸째 숨김
+    h += '<div class="vblock chap">' + lb('vChapters', 'h4') + (v.chapters || []).map(function (c, i) {
+      return '<div class="chap-row" data-t="' + c[0] + '"><button type="button" class="chap-go" data-t="' + c[0] + '" aria-label="Play this section">▶</button>' +
+        '<span class="chap-time"><span' + k('chapters.' + i + '.0') + '>' + esc(c[1]) + '</span><span class="chap-dash"> – </span><span' + k('chapters.' + i + '.2') + '>' + esc(c[3]) + '</span></span>' +
+        '<span class="chap-label"' + k('chapters.' + i + '.1') + '>' + esc(c[2]) + '</span>' +
+        '<button type="button" class="chap-del ed-only" data-ci="' + i + '" title="이 구간 빼기">✕</button></div>';
+    }).join('') + '<button type="button" class="chap-add ed-only" data-vi="' + v.si + '">+ 구간 더하기</button></div>';
+    // 함께 보기: 늘 보이게 — 맨 위는 유튜브 원본, 그 아래 기획서 · 디렉팅 같은 링크
+    var links = [[LBL.vYoutube, 'https://www.youtube.com/watch?v=' + v.id, ' data-k="labels.vYoutube"']].concat((v.links || []).map(function (l, i) { return [l[0], l[1], k('links.' + i + '.0')]; }));
+    // '#plan-…' 은 이 페이지 안의 기획서 화면 — 새 창 없이 넘어간다(→), 바깥 링크는 새 창(↗)
+    h += '<div class="vblock">' + lb('vLinks', 'h4') + links.map(function (l, i) {
+      var inner = String(l[1]).charAt(0) === '#';
+      return '<p data-m="link:videos.' + v.si + '.' + i + '"><a href="' + esc(l[1]) + '"' + (inner ? '' : ' target="_blank" rel="noopener"') + '><span' + l[2] + '>' + esc(l[0]) + '</span> ' + (inner ? '→' : '↗') + '</a></p>';
+    }).join('') + '</div>';
+    info.innerHTML = h;
+  }
+  document.getElementById('vlist').addEventListener('click', function (e) { var b = e.target.closest('.vrow'); if (b) { load(+b.dataset.i, true); V.scrollIntoView({ block: 'center' }); } });
+  info.addEventListener('click', function (e) { if (e.target.closest('.ed-only, [contenteditable]')) return; var b = e.target.closest('[data-t]'); if (b) { V.currentTime = +b.dataset.t; V.play().catch(function () {}); } });
+  // 학습노트 작은 탭
+  var ntabs = document.querySelector('.ntabs');
+  if (ntabs) ntabs.addEventListener('click', function (e) {
+    var b = e.target.closest('.ntab'); if (!b) return;
+    ntabs.querySelectorAll('.ntab').forEach(function (x) { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-selected', on ? 'true' : 'false'); });
+    document.querySelectorAll('.npanel').forEach(function (p) { p.hidden = p.getAttribute('data-panel') !== b.getAttribute('data-tab'); });
+  });
+  // 편집 모드(edit-design.js)가 구간을 더하고 뺄 때 다시 그리려고 내놓음
+  window.PF = { VIDS: VIDS, renderInfo: renderInfo, cur: function () { return cur; }, reload: function (i) { cur = -1; if (VIDS.length) load(Math.max(0, Math.min(VIDS.length - 1, i || 0)), false); } };
+  // 구역 순서(site.json sectionOrder, 편집 화면 왼쪽 「페이지」 판에서 바꿈) — 구역 · 위 메뉴를 그 순서로
+  (function () {
+    var ORDER = ["videos","projects","work","programs","notes","contact"];
+    var root = document.getElementById('top'); if (!root || !ORDER.length) return;
+    var secs = [].slice.call(root.children).filter(function (n) { return n.tagName === 'SECTION' && n.id; });
+    var after = secs.length ? secs[0].previousElementSibling : null;
+    ORDER.forEach(function (id) { var s = document.getElementById(id); if (s && s.parentNode === root) { if (after) after.after(s); else root.prepend(s); after = s; } });
+    var nav = document.querySelector('.nav');
+    if (nav) ORDER.forEach(function (id) { var a = nav.querySelector('a[href="#' + id + '"]'); if (a) nav.appendChild(a); });
+  })();
+  // ── 서양 · 아시아 (2026-10-26) — 링크 끝 ?reel=west | asia 면 그 지역 영상만(둘 다인 영상은 양쪽). 편집 화면은 늘 전부
+  var EDIT = /[?&]edit\b/.test(location.search);
+  var REEL = (function () { var m = /[?&]reel=(west|asia)\b/.exec(location.search); return EDIT || !m ? '' : m[1]; })();
+  var COUNT_T = null;   // 개수 글 원래 모양(사용자가 쓴 글) — 숫자만 바꿔 끼운다
+  function applyReel(r, first) {
+    REEL = r;
+    var firstI = -1, n = 0, secs = 0;
+    document.querySelectorAll('#vlist li[data-id]').forEach(function (li) {
+      var bt = li.querySelector('.vrow'), i = bt ? +bt.dataset.i : -1, v = VIDS[i];
+      var ok = !!v && (!REEL || !v.region || v.region === 'both' || v.region === REEL);
+      li.hidden = !ok;
+      if (ok) { n++; secs += v.duration || 0; if (firstI < 0) firstI = i; }
+    });
+    var c = document.querySelector('#videos .sec-h [data-k="labels.videosCount"]');
+    if (c && !EDIT) {
+      if (COUNT_T == null) COUNT_T = c.textContent;
+      var k = 0, mins = Math.max(1, Math.round(secs / 60));
+      c.textContent = COUNT_T.replace(/\d+(?:\.\d+)?/g, function (x) { k++; return k === 1 ? n : k === 2 ? mins : x; });
+    }
+    document.querySelectorAll('.reelsw button').forEach(function (x) { x.setAttribute('aria-pressed', x.dataset.reel === REEL ? 'true' : 'false'); });
+    var cur0 = VIDS[cur];
+    if (first || !cur0 || !(!REEL || cur0.region === 'both' || cur0.region === REEL)) { if (firstI >= 0) { cur = -1; load(firstI, false); } }
+  }
+  if (!EDIT && VIDS.some(function (v) { return v.region && v.region !== 'both'; })) {
+    var sh = document.querySelector('#videos .sec-h');
+    if (sh) {
+      var sw = document.createElement('p'); sw.className = 'reelsw';
+      sw.innerHTML = [['', REEL_L.all], ['west', REEL_L.west], ['asia', REEL_L.asia]].map(function (o) { return '<button type="button" data-reel="' + o[0] + '">' + esc(o[1]) + '</button>'; }).join('<span aria-hidden="true">·</span>');
+      sh.appendChild(sw);
+      sw.addEventListener('click', function (e) {
+        var bt = e.target.closest('[data-reel]'); if (!bt) return;
+        applyReel(bt.dataset.reel, false);
+        try { var u = new URL(location.href); if (bt.dataset.reel) u.searchParams.set('reel', bt.dataset.reel); else u.searchParams.delete('reel'); history.replaceState(null, '', u); } catch (_) {}
+      });
+    }
+  }
+  if (VIDS.length) applyReel(REEL, true);
+
+  // 안에 보이는 글 · 사진 · 영상이 하나도 없는 구역과 줄(테두리 선이 있는 칸)은 선까지 통째로 숨긴다(2026-10-25 사용자:
+  // 글을 다 지웠는데 선만 남아 지저분함). 공개 페이지와 편집 화면 모두. 편집 화면에선 글 · 숨김이 바뀔 때마다 다시 잰다
+  (function () {
+    var root = document.getElementById('top'); if (!root) return;
+    var shown = function (n) { return n.getClientRects().length > 0; };
+    function hasContent(el) {
+      var a = document.activeElement; if (a && a.isContentEditable && el.contains(a)) return true;
+      var m = el.querySelectorAll('img,video,iframe,svg,canvas,input,select,textarea');
+      for (var i = 0; i < m.length; i++) if (shown(m[i])) return true;
+      var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), t;
+      while ((t = w.nextNode())) if (t.nodeValue.trim() && t.parentElement && shown(t.parentElement)) return true;
+      return false;
+    }
+    var busy = false;
+    function run() {
+      if (busy) return; busy = true;
+      document.querySelectorAll('.pf-void').forEach(function (e) { e.classList.remove('pf-void'); });
+      var all = [].slice.call(root.querySelectorAll('section, section *')).filter(function (el) {
+        if (el.closest('[hidden]')) return false;   // 접힌 탭 안은 판단하지 않음
+        if (el.tagName === 'SECTION') return true;
+        if (!el.querySelector('[data-k],[data-m],img')) return false;   // 장식 선(내용이 원래 없는 칸)은 그대로
+        var cs = getComputedStyle(el);
+        return parseFloat(cs.borderTopWidth) > 0 || parseFloat(cs.borderBottomWidth) > 0;
+      });
+      all.reverse().forEach(function (el) {   // 안쪽부터
+        if (!hasContent(el)) {
+          el.classList.add('pf-void');
+          if (el.tagName === 'SECTION' && el.id) document.querySelectorAll('a[href="#' + el.id + '"]').forEach(function (a) { a.classList.add('pf-void'); });
+        }
+      });
+      busy = false;
+    }
+    var tm = 0; function later() { clearTimeout(tm); tm = setTimeout(run, 120); }
+    window.PF_void = run;
+    run(); window.addEventListener('load', later);
+    if (document.documentElement.classList.contains('ed-mode') || /[?&]edit/.test(location.search)) {
+      new MutationObserver(later).observe(root, { childList: true, subtree: true, characterData: true });
+      new MutationObserver(later).observe(document.head, { childList: true, subtree: true, characterData: true });
+      document.addEventListener('focusin', later); document.addEventListener('focusout', later);
+    }
+  })();
+
+  // 영상 기획서 화면 — 주소 끝이 #plan-<id> 이면 본문 대신 그 기획서를 보인다. 다른 # 이면 본문으로 돌아온다
+  var MAIN = document.getElementById('top');
+  function route() {
+    var h = location.hash || '', plan = h.indexOf('#plan-') === 0 ? document.getElementById(h.slice(1)) : null;
+    document.querySelectorAll('.plan').forEach(function (p) { p.hidden = p !== plan; });
+    MAIN.hidden = !!plan;
+    if (plan) { if (!V.paused) V.pause(); window.scrollTo(0, 0); }
+    else if (h.length > 1) { var t = document.getElementById(h.slice(1)); if (t) t.scrollIntoView(); }
+  }
+  window.addEventListener('hashchange', route);
+  route();
+  // 기획서의 시간(디렉션 표) · "이 영상 보기" → 본문 영상으로 돌아가 그 장면부터 재생
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.cue[data-vi]'); if (!b) return;
+    var vi = +b.dataset.vi, t = +b.dataset.t || 0;
+    if (location.hash !== '#videos') location.hash = '#videos';
+    load(vi, false);
+    var go = function () { try { V.currentTime = t; } catch (err) {} V.play().catch(function () {}); };
+    if (V.readyState >= 1) go(); else V.addEventListener('loadedmetadata', function once() { V.removeEventListener('loadedmetadata', once); go(); });
+    setTimeout(function () { V.scrollIntoView({ block: 'center' }); }, 50);
+  });
+
+  // 사진 넘기기
+  document.querySelectorAll('.gal').forEach(function (g) {
+    g.addEventListener('click', function (e) {
+      var b = e.target.closest('.gal-thumbs button'); if (!b) return;
+      var main = g.querySelector('.gal-main img'), cap = g.querySelector('.gal-main figcaption');
+      main.src = b.dataset.src; main.alt = b.dataset.cap; cap.textContent = b.dataset.cap;
+      g.querySelectorAll('.gal-thumbs button').forEach(function (x) { x.classList.toggle('on', x === b); });
+    });
+  });
+
+  // 옆으로 넘겨 보기 — 모두 문서에서 받음(편집 모드가 묶음을 바꿔 끼워도 동작)
+  var slT = function (sl) { return sl.querySelector('.sl-track'); };
+  var slIdx = function (t) { return t.clientWidth ? Math.round(t.scrollLeft / t.clientWidth) : 0; };
+  var slGo = function (sl, i) { var t = slT(sl); i = Math.max(0, Math.min(t.children.length - 1, i)); t.scrollTo({ left: i * t.clientWidth, behavior: 'smooth' }); };
+  var slSync = function (sl) {
+    var t = slT(sl), n = t.children.length, i = slIdx(t), b = sl.querySelector('.sl-n b'), ln = sl.querySelector('.sl-line i');
+    if (b) b.textContent = i + 1;
+    if (ln) ln.style.left = (i * 100 / n) + '%';
+    var p = sl.querySelector('.sl-prev'), q = sl.querySelector('.sl-next');
+    if (p) p.disabled = i <= 0; if (q) q.disabled = i >= n - 1;
+    var g = t.children[i] && t.children[i].getAttribute('data-g');
+    if (g != null) document.querySelectorAll('.pgm-list li').forEach(function (li) { li.classList.toggle('on', li.getAttribute('data-g') === g); });
+  };
+  var slAll = function () { document.querySelectorAll('.sl').forEach(slSync); };
+  slAll(); window.addEventListener('resize', slAll); window.addEventListener('load', slAll);
+  document.addEventListener('scroll', function (e) { var t = e.target; if (t.classList && t.classList.contains('sl-track')) slSync(t.closest('.sl')); }, true);
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.sl-prev, .sl-next');
+    if (b) { var sl = b.closest('.sl'); slGo(sl, slIdx(slT(sl)) + (b.classList.contains('sl-next') ? 1 : -1)); return; }
+    var li = e.target.closest('.pgm-list li[data-to]');
+    if (li && !document.documentElement.classList.contains('ed-mode')) { var ps = document.querySelector('.pgm .sl'); if (ps) slGo(ps, +li.getAttribute('data-to')); }
+  });
+  document.addEventListener('keydown', function (e) {
+    var t = e.target.closest && e.target.closest('.sl-track'); if (!t || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+    e.preventDefault(); slGo(t.closest('.sl'), slIdx(t) + (e.key === 'ArrowRight' ? 1 : -1));
+  });
+  // 마우스로 끌어 넘기기 (손가락은 브라우저가 알아서 밀어 줌)
+  var slDrag = null;
+  document.addEventListener('pointerdown', function (e) {
+    if (e.pointerType !== 'mouse' || e.button !== 0 || document.documentElement.classList.contains('ed-mode')) return;
+    var t = e.target.closest('.sl-track'); if (!t) return;
+    slDrag = { t: t, x: e.clientX, s: t.scrollLeft, i: slIdx(t), moved: false };
+  });
+  document.addEventListener('pointermove', function (e) {
+    if (!slDrag) return;
+    var dx = e.clientX - slDrag.x;
+    if (!slDrag.moved && Math.abs(dx) < 4) return;
+    slDrag.moved = true; slDrag.t.classList.add('drag'); slDrag.t.scrollLeft = slDrag.s - dx;
+  });
+  document.addEventListener('pointerup', function (e) {
+    if (!slDrag) return;
+    var d = slDrag; slDrag = null;
+    if (!d.moved) return;
+    var dx = e.clientX - d.x, w = d.t.clientWidth;
+    var to = Math.abs(dx) > w * 0.12 ? d.i + (dx < 0 ? 1 : -1) : d.i;
+    d.t.classList.remove('drag'); slGo(d.t.closest('.sl'), to);
+    var k = function (ev) { ev.stopPropagation(); ev.preventDefault(); };   // 끈 뒤 따라오는 클릭은 버림
+    d.t.addEventListener('click', k, true);
+    setTimeout(function () { d.t.removeEventListener('click', k, true); }, 0);
+  });
+
+  // 그림·영상 저장 막기
+  document.addEventListener('contextmenu', function (e) { if (e.target.closest('img, video, .player, .gal, .sl')) e.preventDefault(); });
+  document.addEventListener('dragstart', function (e) { if (e.target.closest('img, video')) e.preventDefault(); });
+
+  // 이메일 복사
+  document.getElementById('copyMail').addEventListener('click', function () {
+    var b = this, t = document.getElementById('mail').textContent;
+    var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, select); else select();
+    function select() { var r = document.createRange(); r.selectNodeContents(document.getElementById('mail')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Selected · Ctrl+C'; }
+  });
+})();
+</script>
+
+</html>
